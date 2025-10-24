@@ -225,13 +225,177 @@ Thank you for considering this partnership. I look forward to hearing from you.<
   navButtons.admin.addEventListener('click', () => showSection('admin'));
 
   // ===== Donation Form =====
-  document.getElementById('donate-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('donor-name').value;
-    const amount = document.getElementById('donation-amount').value;
-    alert(`Thank you ${name} but service is not available now  send the donations on the number at the bank account or at the number on home menu!`);
-    this.reset();
+const API_URL = 'http://localhost:5000'; // Backend URL
+
+// ===== Navigation =====
+const sections = { home: document.getElementById('home'), donate: document.getElementById('donate'), upload: document.getElementById('upload'), admin: document.getElementById('admin') };
+const navButtons = { home: document.getElementById('nav-home'), donate: document.getElementById('nav-donate'), upload: document.getElementById('nav-upload'), admin: document.getElementById('nav-admin'), logout: document.getElementById('nav-logout') };
+
+function showSection(section) {
+  for (const key in sections) sections[key].style.display = 'none';
+  sections[section].style.display = 'block';
+  for (const key in navButtons) navButtons[key].classList.remove('active');
+  if(navButtons[section]) navButtons[section].classList.add('active');
+}
+
+navButtons.home.addEventListener('click', () => showSection('home'));
+navButtons.donate.addEventListener('click', () => showSection('donate'));
+navButtons.upload.addEventListener('click', () => showSection('upload'));
+navButtons.admin.addEventListener('click', () => showSection('admin'));
+
+// ===== Fetch & Display Donations =====
+async function loadDonations() {
+  const res = await fetch(`${API_URL}/donations`);
+  const donations = await res.json();
+  console.log('Donations:', donations);
+  // Optional: Display in a div
+}
+
+loadDonations();
+
+// ===== Donation Form =====
+document.getElementById('donate-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const name = document.getElementById('donor-name').value;
+  const amount = document.getElementById('donation-amount').value;
+
+  try {
+    const res = await fetch(`${API_URL}/donate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, amount })
+    });
+    const data = await res.json();
+    if(data.success) {
+      alert(`Thank you ${name}! Your donation of ${amount} has been recorded.`);
+      this.reset();
+      loadDonations();
+    } else {
+      alert('Donation failed: ' + (data.error || 'Unknown error'));
+    }
+  } catch(err) {
+    alert('Error connecting to server.');
+    console.error(err);
+  }
+});
+
+// ===== Upload Form =====
+const uploadedMediaContainer = document.getElementById('uploaded-media');
+
+async function loadMedia() {
+  uploadedMediaContainer.innerHTML = '';
+  const res = await fetch(`${API_URL}/media`);
+  const mediaList = await res.json();
+  mediaList.forEach(item => {
+    const galleryItem = document.createElement('div');
+    galleryItem.classList.add('gallery-item');
+    galleryItem.dataset.type = item.type;
+
+    let mediaElement;
+    if(item.type === 'image') {
+      mediaElement = document.createElement('img');
+      mediaElement.src = item.url;
+    } else {
+      mediaElement = document.createElement('video');
+      mediaElement.src = item.url;
+      mediaElement.controls = true;
+    }
+
+    galleryItem.appendChild(mediaElement);
+
+    if(item.description) {
+      const caption = document.createElement('div');
+      caption.classList.add('gallery-caption');
+      caption.textContent = item.description;
+      galleryItem.appendChild(caption);
+    }
+
+    uploadedMediaContainer.appendChild(galleryItem);
   });
+}
+
+document.getElementById('upload-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const file = document.getElementById('media-file').files[0];
+  const description = document.getElementById('media-description').value;
+  if(!file) return alert('Please select a file.');
+
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('description', description);
+
+  try {
+    const res = await fetch(`${API_URL}/upload`, { method: 'POST', body: formData });
+    const data = await res.json();
+    if(data.success) {
+      alert('File uploaded successfully!');
+      this.reset();
+      loadMedia();
+    } else {
+      alert('Upload failed: ' + (data.error || 'Unknown error'));
+    }
+  } catch(err) {
+    alert('Error connecting to server.');
+    console.error(err);
+  }
+});
+
+// ===== Filter Buttons =====
+document.getElementById('filter-all').addEventListener('click', () => document.querySelectorAll('.gallery-item').forEach(item => item.style.display = 'block'));
+document.getElementById('filter-images').addEventListener('click', () => document.querySelectorAll('.gallery-item').forEach(item => item.style.display = item.dataset.type === 'image' ? 'block' : 'none'));
+document.getElementById('filter-videos').addEventListener('click', () => document.querySelectorAll('.gallery-item').forEach(item => item.style.display = item.dataset.type === 'video' ? 'block' : 'none'));
+
+// ===== Admin Login =====
+const ADMIN_CREDENTIALS = { username: 'admin', password: '1234' }; // For frontend alert only
+document.getElementById('admin-form').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const username = document.getElementById('admin-username').value;
+  const password = document.getElementById('admin-password').value;
+
+  try {
+    const res = await fetch(`${API_URL}/admin/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
+    const data = await res.json();
+    if(data.success) {
+      localStorage.setItem('adminUser', username);
+      alert('Admin logged in successfully!');
+      navButtons.admin.style.display = 'none';
+      navButtons.logout.style.display = 'inline-block';
+      showSection('home');
+    } else {
+      alert(data.error || 'Login failed');
+    }
+  } catch(err) {
+    alert('Error connecting to server.');
+    console.error(err);
+  }
+});
+
+// ===== Logout =====
+navButtons.logout.addEventListener('click', function(){
+  localStorage.removeItem('adminUser');
+  navButtons.logout.style.display = 'none';
+  navButtons.admin.style.display = 'inline-block';
+  alert('Logged out successfully!');
+  showSection('home');
+});
+
+function checkAdmin() {
+  const user = localStorage.getItem('adminUser');
+  if(user) {
+    navButtons.admin.style.display = 'none';
+    navButtons.logout.style.display = 'inline-block';
+    showSection('home');
+  }
+}
+
+// Load media and donations on page load
+checkAdmin();
+loadMedia();
+loadDonations();
 
   // ===== Upload Form with Filter =====
   const uploadedMediaContainer = document.getElementById('uploaded-media');
