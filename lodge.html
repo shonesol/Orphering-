@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tujje Safaris - East Africa</title>
+
+<style>
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(#061a2f, #040d18);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: linear-gradient(90deg, #ff6a00, #d4af37, #0057b7);
+    padding: 25px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+/* SUB TEXT */
+.sub {
+    text-align: center;
+    padding: 10px;
+    color: #ffd27a;
+}
+
+/* BACK BUTTON */
+.back-home {
+    display: inline-block;
+    margin: 15px;
+    padding: 10px 18px;
+    background: #00a86b;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.back-home:hover {
+    transform: scale(1.05);
+    background: #00c77a;
+}
+
+/* CONTAINER */
+.container {
+    width: 92%;
+    margin: auto;
+}
+
+/* ===== PARK CARD ===== */
+.park {
+    margin: 30px 0;
+    padding: 20px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.park.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.park h2 {
+    color: #ffb347;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+/* ===== LODGES GRID ===== */
+.lodges {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+/* LODGE CARD */
+.lodge {
+    background: linear-gradient(145deg, #0b2a4a, #0e3b66);
+    padding: 15px;
+    border-radius: 12px;
+    border-left: 4px solid #ff6a00;
+    transition: 0.4s ease;
+
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.lodge.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.lodge:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(255,106,0,0.3);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    background: #020a14;
+    color: #aaa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+🌍 TUJJE SAFARIS — EAST AFRICA LUXURY ADVENTURES
+</header>
+
+<div class="sub">
+Discover Wildlife • Luxury Lodges • Unforgettable Journeys
+</div>
+
+<a href="index.html" class="back-home">🏠 Back to Home</a>
+
+<div class="container">
+
+<!-- ===== PARKS ===== -->
+
+<div class="park">
+<h2>Murchison Falls National Park</h2>
+<div class="lodges">
+<div class="lodge">Para Safari Lodge</div>
+<div class="lodge">Pakuba Safari Lodge</div>
+<div class="lodge">Chobe Safari Lodge</div>
+<div class="lodge">Nile Safari Lodge</div>
+</div>
+</div>
+
+<div class="park">
+<h2>Queen Elizabeth National Park</h2>
+<div class="lodges">
+<div class="lodge">Mweya Safari Lodge</div>
+<div class="lodge">Kyambura Gorge Lodge</div>
+<div class="lodge">Ishasha Wilderness Camp</div>
+<div class="lodge">Katara Lodge</div>
+</div>
+</div>
+
+<div class="park">
+<h2>Bwindi Impenetrable National Park</h2>
+<div class="lodges">
+<div class="lodge">Buhoma Lodge</div>
+<div class="lodge">Mahogany Springs</div>
+<div class="lodge">Gorilla Forest Camp</div>
+<div class="lodge">Sanctuary Gorilla Camp</div>
+</div>
+</div>
+
+<div class="park">
+<h2>Kibale National Park</h2>
+<div class="lodges">
+<div class="lodge">Primate Lodge Kibale</div>
+<div class="lodge">Kyaninga Lodge</div>
+<div class="lodge">Chimpanzee Forest Camp</div>
+<div class="lodge">Turaco Treetops</div>
+</div>
+</div>
+
+</div>
+
+<footer>
+© 2026 Tujje Safaris | Luxury East African Experiences
+</footer>
+
+<script>
+// ===== SCROLL ANIMATION =====
+const parks = document.querySelectorAll('.park');
+const lodges = document.querySelectorAll('.lodge');
+
+function showOnScroll() {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    parks.forEach(p => {
+        const top = p.getBoundingClientRect().top;
+        if(top < triggerBottom) {
+            p.classList.add('show');
+
+            // animate lodges inside
+            let items = p.querySelectorAll('.lodge');
+            items.forEach((l, i) => {
+                setTimeout(() => {
+                    l.classList.add('show');
+                }, i * 150);
+            });
+        }
+    });
+}
+
+window.addEventListener('scroll', showOnScroll);
+window.addEventListener('load', showOnScroll);
+</script>
+
+</body>
+</html>
