@@ -1,1 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tujje Safaris & Tours</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* ================= GLOBAL ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f5f0e6;
+    color:#222;
+}
+
+/* ================= HEADER ================= */
+header{
+    background:#2f2f2f;
+    color:white;
+    padding:20px;
+    text-align:center;
+    position:sticky;
+    top:0;
+}
+
+header h1{
+    font-weight:900;
+}
+
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/* ================= HERO ================= */
+.hero{
+    height:80vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
+    url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee') center/cover no-repeat;
+    color:white;
+}
+
+.hero h2{
+    font-size:48px;
+    font-weight:900;
+}
+
+.btn{
+    margin-top:20px;
+    padding:12px 25px;
+    background:#d4af37;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= SECTIONS ================= */
+section{
+    padding:70px 20px;
+}
+
+.alt{
+    background:#fff7ea;
+}
+
+.title{
+    text-align:center;
+    font-size:32px;
+    font-weight:900;
+    margin-bottom:40px;
+}
+
+/* ================= FORMS ================= */
+form{
+    max-width:650px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+input, textarea, select{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:1px solid #ddd;
+    border-radius:6px;
+}
+
+button{
+    width:100%;
+    margin-top:15px;
+    padding:12px;
+    background:#2f2f2f;
+    color:white;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= TOURS ================= */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* ================= REVIEWS ================= */
+.reviews{
+    background:#f1e6d3;
+    text-align:center;
+}
+
+.review-form{
+    max-width:600px;
+    margin:20px auto;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+.slider-container{
+    max-width:700px;
+    margin:40px auto;
+    overflow:hidden;
+}
+
+.slider{
+    display:flex;
+    transition:transform 0.6s ease-in-out;
+}
+
+.review-card{
+    min-width:100%;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+.stars{
+    color:#d4af37;
+    margin:10px 0;
+}
+
+/* ================= WHATSAPP ================= */
+.whatsapp-section{
+    text-align:center;
+    padding:40px 20px;
+    background:#f1e6d3;
+}
+
+.whatsapp-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:#25D366;
+    color:white;
+    padding:15px 25px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.whatsapp-btn img{
+    width:24px;
+    height:24px;
+}
+
+/* FOOTER */
+footer{
+    background:#3a3a3a;
+    color:#f5f0e6;
+    padding:40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>TUJJÉ SAFARIS & TOURS</h1>
+</header>
+
+<section class="hero">
+    <h2>Explore East Africa</h2>
+</section>
+
+<!-- ================= TOURS ================= -->
+<section>
+    <h2 class="title">Safari Packages</h2>
+
+    <div class="grid">
+        <div class="card">Gorilla Trekking</div>
+        <div class="card">Masai Mara</div>
+        <div class="card">Serengeti</div>
+    </div>
+</section>
+
+<!-- ================= REVIEWS SYSTEM ================= -->
+<section class="reviews">
+    <h2 class="title">What Our Clients Say</h2>
+
+    <!-- REVIEW FORM -->
+    <div class="review-form">
+        <input type="text" id="rname" placeholder="Your Name">
+        <textarea id="rtext" placeholder="Write review"></textarea>
+
+        <select id="rrating">
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+        </select>
+
+        <button onclick="submitReview()">Submit Review</button>
+    </div>
+
+    <!-- SLIDER -->
+    <div class="slider-container">
+        <div id="slider" class="slider"></div>
+    </div>
+</section>
+
+<!-- ================= WHATSAPP ABOVE FOOTER ================= -->
+<section class="whatsapp-section">
+    <h2>Chat With Us on WhatsApp</h2>
+
+    <a class="whatsapp-btn"
+       href="https://wa.me/256702094292?text=Hello%20Tujje%20Safaris"
+       target="_blank">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+        Message Us
+    </a>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    <b>Tujje Safaris & Tours</b><br>
+    Kampala & Jinja, Uganda
+</footer>
+
+<!-- ================= FIREBASE + JS ================= -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "YOUR_DB_URL",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_BUCKET",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const reviewsRef = ref(db, "reviews/");
+
+let reviews = [];
+let index = 0;
+
+/* ================= SUBMIT REVIEW ================= */
+window.submitReview = function(){
+    const name = rname.value;
+    const text = rtext.value;
+    const rating = rrating.value;
+
+    push(reviewsRef, {
+        name, text, rating
+    });
+
+    rname.value="";
+    rtext.value="";
+}
+
+/* ================= LOAD REVIEWS ================= */
+onValue(reviewsRef, (snapshot)=>{
+    reviews = [];
+
+    snapshot.forEach((child)=>{
+        reviews.push(child.val());
+    });
+
+    renderReviews();
+});
+
+/* ================= RENDER ================= */
+function renderReviews(){
+    const slider = document.getElementById("slider");
+    slider.innerHTML="";
+
+    reviews.forEach(r=>{
+        const div = document.createElement("div");
+        div.className="review-card";
+
+        div.innerHTML=`
+            <h3>${r.name}</h3>
+            <div class="stars">${"⭐".repeat(r.rating)}</div>
+            <p>${r.text}</p>
+        `;
+
+        slider.appendChild(div);
+    });
+
+    startSlider();
+}
+
+/* ================= AUTO LOOP SLIDER ================= */
+function startSlider(){
+    const slider = document.getElementById("slider");
+
+    setInterval(()=>{
+        index++;
+        if(index >= reviews.length) index = 0;
+
+        slider.style.transform = `translateX(-${index * 100}%)`;
+
+    }, 3500);
+}
+</script>
+
+</body>
+</html>
