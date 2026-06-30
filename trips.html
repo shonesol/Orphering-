@@ -1,1 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Featured Trips - Tujje Safaris</title>
 
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b1b3a;
+color:white;
+}
+
+/* HEADER */
+header{
+background:linear-gradient(90deg,#0b1b3a,#ff8c00,#d4af37);
+padding:20px;
+text-align:center;
+font-size:26px;
+font-weight:bold;
+}
+
+.back-home{
+display:inline-block;
+margin-top:10px;
+padding:10px 15px;
+background:#ff8c00;
+color:white;
+text-decoration:none;
+border-radius:8px;
+}
+
+/* SLIDER */
+.slider-container{
+position:relative;
+width:92%;
+margin:30px auto;
+overflow:hidden;
+border-radius:15px;
+border:2px solid #ff8c00;
+}
+
+.slides{
+display:flex;
+transition:transform 0.6s ease-in-out;
+}
+
+.slide{
+min-width:100%;
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+background:#112a5c;
+padding:20px;
+gap:20px;
+box-sizing:border-box;
+}
+
+/* IMAGE */
+.slide img{
+width:45%;
+border-radius:12px;
+border:3px solid #d4af37;
+object-fit:cover;
+}
+
+/* CONTENT */
+.content{
+width:50%;
+}
+
+.content h2{
+color:#ff8c00;
+}
+
+.content p{
+line-height:1.6;
+font-size:15px;
+}
+
+/* BOOK BUTTON */
+.book-btn{
+display:inline-block;
+margin-top:15px;
+padding:12px 18px;
+background:linear-gradient(90deg,#ff8c00,#d4af37);
+color:white;
+text-decoration:none;
+font-weight:bold;
+border-radius:8px;
+transition:0.3s;
+}
+
+.book-btn:hover{
+transform:scale(1.05);
+background:#ff8c00;
+}
+
+/* NAV BUTTONS */
+.btn{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:#d4af37;
+border:none;
+padding:10px 15px;
+cursor:pointer;
+font-size:18px;
+border-radius:50%;
+}
+
+.prev{left:10px;}
+.next{right:10px;}
+
+.btn:hover{
+background:#ff8c00;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.slide{
+flex-direction:column;
+text-align:center;
+}
+
+.slide img,.content{
+width:100%;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+Featured Trips - Tujje Safaris
+<br>
+<a class="back-home" href="index.html">⬅ Back Home</a>
+</header>
+
+<div class="slider-container">
+
+<div class="slides" id="slides">
+
+<!-- 1 -->
+<div class="slide">
+<img src="https://source.unsplash.com/800x600/?uganda,gorilla" alt="">
+<div class="content">
+<h2>Uganda Gorilla Trek</h2>
+<p>Experience mountain gorillas in Bwindi Impenetrable Forest.</p>
+<a class="book-btn" href="#booking">Book Now</a>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="slide">
+<img src="https://source.unsplash.com/800x600/?murchison,waterfall" alt="">
+<div class="content">
+<h2>Murchison Falls Safari</h2>
+<p>Witness the Nile forcing through a narrow gorge.</p>
+<a class="book-btn" href="#booking">Book Now</a>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="slide">
+<img src="https://source.unsplash.com/800x600/?queen,uganda,safari" alt="">
+<div class="content">
+<h2>Queen Elizabeth Safari</h2>
+<p>Tree climbing lions and Kazinga Channel cruises.</p>
+<a class="book-btn" href="#booking">Book Now</a>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="slide">
+<img src="https://source.unsplash.com/800x600/?kidepo,africa" alt="">
+<div class="content">
+<h2>Kidepo Valley Safari</h2>
+<p>Remote wilderness and authentic African culture.</p>
+<a class="book-btn" href="#booking">Book Now</a>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="slide">
+<img src="https://source.unsplash.com/800x600/?maasai,mara" alt="">
+<div class="content">
+<h2>Maasai Mara Safari</h2>
+<p>Great Migration and Big Five experience.</p>
+<a class="book-btn" href="#booking">Book Now</a>
+</div>
+</div>
+
+<!-- 6 -->
+<div class="slide">
+<img src="https://source.unsplash.com/800x600/?amboseli,elephant" alt="">
+<div class="content">
+<h2>Amboseli Safari</h2>
+<p>Elephants with Mount Kilimanjaro views.</p>
+<a class="book-btn" href="#booking">Book Now</a>
+</div>
+</div>
+
+<!-- 7 -->
+<div class="slide">
+<img src="https://source.unsplash.com/800x600/?serengeti" alt="">
+<div class="content">
+<h2>Serengeti Safari</h2>
+<p>Endless plains and wildlife migration.</p>
+<a class="book-btn" href="#booking">Book Now</a>
+</div>
+</div>
+
+<!-- 8 -->
+<div class="slide">
+<img src="https://source.unsplash.com/800x600/?ngorongoro" alt="">
+<div class="content">
+<h2>Ngorongoro Crater</h2>
+<p>Big Five inside a natural volcanic bowl.</p>
+<a class="book-btn" href="#booking">Book Now</a>
+</div>
+</div>
+
+<!-- 9 -->
+<div class="slide">
+<img src="https://source.unsplash.com/800x600/?rwanda,gorilla" alt="">
+<div class="content">
+<h2>Rwanda Gorilla Trek</h2>
+<p>Volcanoes National Park gorilla experience.</p>
+<a class="book-btn" href="#booking">Book Now</a>
+</div>
+</div>
+
+<!-- 10 -->
+<div class="slide">
+<img src="https://source.unsplash.com/800x600/?africa,safari" alt="">
+<div class="content">
+<h2>East Africa Combo</h2>
+<p>Uganda, Kenya, Tanzania & Rwanda adventure.</p>
+<a class="book-btn" href="#booking">Book Now</a>
+</div>
+</div>
+
+</div>
+
+<button class="btn prev" onclick="moveSlide(-1)">❮</button>
+<button class="btn next" onclick="moveSlide(1)">❯</button>
+
+</div>
+
+<!-- BOOKING SECTION TARGET -->
+<div id="booking"></div>
+
+<script>
+let index = 0;
+const slides = document.getElementById("slides");
+const total = document.querySelectorAll(".slide").length;
+
+function moveSlide(step){
+index = (index + step + total) % total;
+slides.style.transform = `translateX(${-index * 100}%)`;
+}
+
+setInterval(()=>moveSlide(1),5000);
+</script>
+
+</body>
+</html>
