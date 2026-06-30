@@ -8,7 +8,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
 
 <style>
-/* ================= GLOBAL ================= */
+
+/* ================= THEME COLORS =================
+BLUE   : #1e88e5
+ORANGE : #ff8f00
+GOLD   : #d4af37
+DARK   : #1b1b1b
+BEIGE  : #fff8e6
+================================================== */
+
 *{
     margin:0;
     padding:0;
@@ -17,108 +25,97 @@
 }
 
 body{
-    background:#f5f0e6;
-    color:#222;
+    background:#fff8e6;
+    color:#1b1b1b;
 }
 
 /* ================= HEADER ================= */
 header{
-    background:#2f2f2f;
+    background:linear-gradient(90deg,#1e88e5,#ff8f00);
     color:white;
     padding:20px;
     text-align:center;
     position:sticky;
     top:0;
+    z-index:1000;
 }
 
-header h1{
-    font-weight:900;
+/* MENU */
+.menu-container{
+    position:relative;
+    margin-top:10px;
 }
 
-nav a{
-    color:white;
-    margin:0 15px;
+.menu-btn{
+    background:#d4af37;
+    border:none;
+    padding:10px 18px;
+    font-weight:800;
+    border-radius:6px;
+    cursor:pointer;
+    color:#1b1b1b;
+}
+
+.menu{
+    display:none;
+    position:absolute;
+    right:0;
+    top:50px;
+    background:white;
+    width:260px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    overflow:hidden;
+    z-index:999;
+}
+
+.menu a{
+    display:block;
+    padding:12px;
     text-decoration:none;
-    font-weight:600;
+    color:#1b1b1b;
+    border-bottom:1px solid #eee;
+}
+
+.menu a:hover{
+    background:#fff8e6;
 }
 
 /* ================= HERO ================= */
 .hero{
     height:80vh;
     display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
-    background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
-    url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee') center/cover no-repeat;
     color:white;
+    background:
+    linear-gradient(rgba(30,136,229,0.5),rgba(255,143,0,0.6)),
+    url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee') center/cover no-repeat;
 }
 
 .hero h2{
     font-size:48px;
-    font-weight:900;
 }
 
-.btn{
-    margin-top:20px;
-    padding:12px 25px;
-    background:#d4af37;
-    border:none;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* ================= SECTIONS ================= */
+/* ================= SECTION ================= */
 section{
-    padding:70px 20px;
-}
-
-.alt{
-    background:#fff7ea;
+    padding:60px 20px;
 }
 
 .title{
     text-align:center;
     font-size:32px;
     font-weight:900;
-    margin-bottom:40px;
+    margin-bottom:30px;
+    color:#ff8f00;
 }
 
-/* ================= FORMS ================= */
-form{
-    max-width:650px;
-    margin:auto;
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.1);
-}
-
-input, textarea, select{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    border:1px solid #ddd;
-    border-radius:6px;
-}
-
-button{
-    width:100%;
-    margin-top:15px;
-    padding:12px;
-    background:#2f2f2f;
-    color:white;
-    border:none;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* ================= TOURS ================= */
+/* ================= CARDS ================= */
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
+    gap:20px;
     max-width:1100px;
     margin:auto;
 }
@@ -127,27 +124,14 @@ button{
     background:white;
     padding:25px;
     border-radius:12px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.1);
-}
-
-/* ================= REVIEWS ================= */
-.reviews{
-    background:#f1e6d3;
-    text-align:center;
-}
-
-.review-form{
-    max-width:600px;
-    margin:20px auto;
-    background:white;
-    padding:20px;
-    border-radius:12px;
     box-shadow:0 10px 20px rgba(0,0,0,0.1);
+    border-left:6px solid #d4af37;
 }
 
+/* ================= SLIDER ================= */
 .slider-container{
-    max-width:700px;
-    margin:40px auto;
+    max-width:800px;
+    margin:auto;
     overflow:hidden;
 }
 
@@ -156,30 +140,54 @@ button{
     transition:transform 0.6s ease-in-out;
 }
 
-.review-card{
+.slide-card{
     min-width:100%;
     background:white;
     padding:30px;
     border-radius:12px;
+    text-align:center;
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
+    border-top:6px solid #1e88e5;
+}
+
+/* ================= FORM ================= */
+form{
+    max-width:600px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:12px;
     box-shadow:0 10px 20px rgba(0,0,0,0.1);
 }
 
-.stars{
-    color:#d4af37;
-    margin:10px 0;
+input,textarea,select{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border-radius:6px;
+    border:1px solid #ddd;
+}
+
+button{
+    margin-top:10px;
+    width:100%;
+    padding:12px;
+    background:linear-gradient(90deg,#1e88e5,#ff8f00);
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-weight:800;
+    border-radius:6px;
 }
 
 /* ================= WHATSAPP ================= */
-.whatsapp-section{
+.whatsapp{
     text-align:center;
-    padding:40px 20px;
-    background:#f1e6d3;
+    background:#fff1d6;
+    padding:40px;
 }
 
-.whatsapp-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
+.whatsapp a{
     background:#25D366;
     color:white;
     padding:15px 25px;
@@ -188,47 +196,76 @@ button{
     font-weight:bold;
 }
 
-.whatsapp-btn img{
-    width:24px;
-    height:24px;
+/* ================= FOOTER ================= */
+footer{
+    background:#1b1b1b;
+    color:white;
+    padding:50px 20px;
 }
 
-/* FOOTER */
-footer{
-    background:#3a3a3a;
-    color:#f5f0e6;
-    padding:40px;
+.footer-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.payments img{
+    width:45px;
+    margin-right:10px;
+    margin-top:10px;
+}
+
+/* LINKS */
+a{
+    color:#1e88e5;
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
     <h1>TUJJÉ SAFARIS & TOURS</h1>
+
+    <div class="menu-container">
+        <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+
+        <div id="menu" class="menu">
+            <a href="/tours/">Featured Trips</a>
+            <a href="#destinations">Destinations</a>
+            <a href="https://www.tujjesafaris.com/gallery-2/">Gallery</a>
+            <a href="https://www.tujjesafaris.com/about/">About Us</a>
+            <a href="/terms">Terms & Conditions</a>
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="#contact">Contact Us</a>
+            <a href="mailto:info@tujjesafaris.com">Email Us</a>
+        </div>
+    </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-    <h2>Explore East Africa</h2>
+    <h2>Discover Africa in Luxury Style</h2>
 </section>
 
-<!-- ================= TOURS ================= -->
+<!-- PACKAGES -->
 <section>
     <h2 class="title">Safari Packages</h2>
 
     <div class="grid">
-        <div class="card">Gorilla Trekking</div>
-        <div class="card">Masai Mara</div>
-        <div class="card">Serengeti</div>
+        <div class="card">Gorilla Trekking 🦍</div>
+        <div class="card">Masai Mara Safari 🐘</div>
+        <div class="card">Serengeti Migration 🦓</div>
+        <div class="card">Rwenzori Hiking 🏔️</div>
     </div>
 </section>
 
-<!-- ================= REVIEWS SYSTEM ================= -->
-<section class="reviews">
+<!-- REVIEWS -->
+<section style="background:#fff1d6;">
     <h2 class="title">What Our Clients Say</h2>
 
-    <!-- REVIEW FORM -->
-    <div class="review-form">
+    <form>
         <input type="text" id="rname" placeholder="Your Name">
         <textarea id="rtext" placeholder="Write review"></textarea>
 
@@ -238,114 +275,98 @@ footer{
             <option value="3">⭐⭐⭐</option>
         </select>
 
-        <button onclick="submitReview()">Submit Review</button>
-    </div>
+        <button type="button" onclick="submitReview()">Submit Review</button>
+    </form>
 
-    <!-- SLIDER -->
     <div class="slider-container">
         <div id="slider" class="slider"></div>
     </div>
 </section>
 
-<!-- ================= WHATSAPP ABOVE FOOTER ================= -->
-<section class="whatsapp-section">
-    <h2>Chat With Us on WhatsApp</h2>
-
-    <a class="whatsapp-btn"
-       href="https://wa.me/256702094292?text=Hello%20Tujje%20Safaris"
-       target="_blank">
-
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-        Message Us
+<!-- WHATSAPP -->
+<section class="whatsapp">
+    <h2>Chat With Us on WhatsApp</h2><br>
+    <a href="https://wa.me/256702094292?text=Hello%20Tujje%20Safaris">
+        WhatsApp Us
     </a>
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 <footer>
-    <b>Tujje Safaris & Tours</b><br>
-    Kampala & Jinja, Uganda
+    <div class="footer-grid">
+
+        <div>
+            <h3>Tujje Safaris</h3>
+            <p>Kampala & Jinja, Uganda</p>
+            <p>📞 +256 702 094 292</p>
+            <p>📧 info@tujjesafaris.com</p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <p><a href="/tours/">Tours</a></p>
+            <p><a href="https://www.tujjesafaris.com/about/">About</a></p>
+            <p><a href="https://www.tujjesafaris.com/gallery-2/">Gallery</a></p>
+        </div>
+
+        <div class="payments">
+            <h3>Payment Methods</h3>
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196561.png">
+        </div>
+
+    </div>
 </footer>
 
-<!-- ================= FIREBASE + JS ================= -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  databaseURL: "YOUR_DB_URL",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_BUCKET",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-const reviewsRef = ref(db, "reviews/");
-
-let reviews = [];
-let index = 0;
-
-/* ================= SUBMIT REVIEW ================= */
-window.submitReview = function(){
-    const name = rname.value;
-    const text = rtext.value;
-    const rating = rrating.value;
-
-    push(reviewsRef, {
-        name, text, rating
-    });
-
-    rname.value="";
-    rtext.value="";
+<script>
+function toggleMenu(){
+    const menu=document.getElementById("menu");
+    menu.style.display=menu.style.display==="block"?"none":"block";
 }
 
-/* ================= LOAD REVIEWS ================= */
-onValue(reviewsRef, (snapshot)=>{
-    reviews = [];
-
-    snapshot.forEach((child)=>{
-        reviews.push(child.val());
-    });
-
-    renderReviews();
+document.addEventListener("click",(e)=>{
+    const menu=document.getElementById("menu");
+    const btn=document.querySelector(".menu-btn");
+    if(!menu.contains(e.target)&&!btn.contains(e.target)){
+        menu.style.display="none";
+    }
 });
 
-/* ================= RENDER ================= */
-function renderReviews(){
-    const slider = document.getElementById("slider");
+/* REVIEWS */
+let reviews=[];
+
+function submitReview(){
+    const name=rname.value;
+    const text=rtext.value;
+    const rating=rrating.value;
+
+    reviews.push({name,text,rating});
+    render();
+}
+
+function render(){
+    const slider=document.getElementById("slider");
     slider.innerHTML="";
 
     reviews.forEach(r=>{
-        const div = document.createElement("div");
-        div.className="review-card";
-
+        const div=document.createElement("div");
+        div.className="slide-card";
         div.innerHTML=`
             <h3>${r.name}</h3>
-            <div class="stars">${"⭐".repeat(r.rating)}</div>
+            <p>${"⭐".repeat(r.rating)}</p>
             <p>${r.text}</p>
         `;
-
         slider.appendChild(div);
     });
 
-    startSlider();
-}
-
-/* ================= AUTO LOOP SLIDER ================= */
-function startSlider(){
-    const slider = document.getElementById("slider");
-
+    let i=0;
     setInterval(()=>{
-        index++;
-        if(index >= reviews.length) index = 0;
-
-        slider.style.transform = `translateX(-${index * 100}%)`;
-
-    }, 3500);
+        if(reviews.length===0) return;
+        i++;
+        if(i>=reviews.length) i=0;
+        slider.style.transform=`translateX(-${i*100}%)`;
+    },3000);
 }
 </script>
 
