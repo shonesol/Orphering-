@@ -149,7 +149,25 @@ header{
 .close{
     background:#ccc;
 }
+.back-home-btn{
+    position:fixed;
+    top:20px;
+    left:20px;
+    background:linear-gradient(90deg,#1e88e5,#ff8f00);
+    color:white;
+    padding:10px 16px;
+    border-radius:30px;
+    font-weight:700;
+    text-decoration:none;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    z-index:9999;
+    transition:0.3s ease;
+}
 
+.back-home-btn:hover{
+    transform:scale(1.05);
+    background:linear-gradient(90deg,#ff8f00,#d4af37);
+}
 </style>
 </head>
 
@@ -160,7 +178,7 @@ header{
 </header>
 
 <h2 class="title">Featured Trips</h2>
-
+<a href="index.html" class="back-home-btn">⬅ Back to Home</a>
 <div class="trip-grid">
 
     <div class="trip-card">
