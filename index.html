@@ -428,29 +428,35 @@ let reviews = [];
 let index = 0;
 
 async function loadReviews() {
+    try {
+        const snap = await getDocs(collection(db, "reviews"));
 
-    const snap = await getDocs(collection(db, "reviews"));
+        console.log("Documents found:", snap.size);
 
-    reviews = [];
+        reviews = [];
 
-    snap.forEach(doc => {
-        reviews.push(doc.data());
-    });
+        snap.forEach(doc => {
+            console.log(doc.data());
+            reviews.push(doc.data());
+        });
 
-    reviews.sort((a, b) => {
-        return (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0);
-    });
+        reviews.sort((a, b) => {
+            return (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0);
+        });
 
-    index = 0;
+        index = 0;
 
-    if (reviews.length > 0) {
-        showReview();
-    } else {
-        document.getElementById("reviewBox").innerHTML =
-            "<p>No reviews yet</p>";
+        if (reviews.length > 0) {
+            showReview();
+        } else {
+            document.getElementById("reviewBox").innerHTML =
+                "<p>No reviews yet</p>";
+        }
+
+    } catch (err) {
+        console.error("Review loading error:", err);
     }
 }
-
 /* =========================
    SHOW REVIEW
 ========================= */
