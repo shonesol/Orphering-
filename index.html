@@ -281,6 +281,186 @@ text-align:center;
   transform: scale(1.05);
   opacity: 0.9;
 }
+    :root{
+    --orange:#ff7a00;
+    --blue:#0b5ed7;
+    --gold:#ffd700;
+    --white:#ffffff;
+    --dark:#111111;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+footer{
+    background:var(--dark);
+    color:var(--white);
+    padding:60px 8% 30px;
+}
+
+.footer-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:50px;
+}
+
+.footer-about p{
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+.footer-about h3{
+    color:var(--gold);
+    margin:20px 0;
+    font-size:24px;
+}
+
+.footer-about i{
+    color:var(--orange);
+    width:25px;
+}
+
+.footer-about a{
+    color:var(--white);
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.footer-about a:hover{
+    color:var(--gold);
+}
+
+.footer-menu h2{
+    color:var(--gold);
+    font-size:34px;
+    margin-bottom:20px;
+}
+
+.footer-menu ul{
+    list-style:none;
+}
+
+.footer-menu li{
+    margin:15px 0;
+}
+
+.footer-menu a{
+    color:var(--white);
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.footer-menu a:hover{
+    color:var(--orange);
+    padding-left:8px;
+}
+
+/* Payment Section */
+
+.payment{
+    margin-top:50px;
+    padding:35px 0;
+    text-align:center;
+    border-top:2px solid var(--blue);
+    border-bottom:2px solid var(--blue);
+}
+
+.payment h2{
+    color:var(--gold);
+    margin-bottom:20px;
+    font-size:30px;
+}
+
+.payment-icons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:25px;
+}
+
+.payment-icons i{
+    font-size:48px;
+    color:var(--white);
+    transition:0.3s;
+}
+
+.payment-icons i:hover{
+    color:var(--orange);
+    transform:scale(1.15);
+}
+
+.payment p{
+    margin-top:20px;
+    line-height:1.7;
+    color:#ddd;
+    max-width:700px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+/* Copyright */
+
+.copy{
+    text-align:center;
+    margin-top:30px;
+    padding-top:20px;
+    border-top:1px solid #333;
+    color:#bbb;
+    font-size:15px;
+}
+
+.copy span{
+    color:var(--gold);
+    font-weight:bold;
+}
+
+/* Responsive */
+
+@media (max-width:768px){
+
+footer{
+    padding:40px 20px;
+}
+
+.footer-container{
+    grid-template-columns:1fr;
+    gap:35px;
+}
+
+.footer-menu h2{
+    font-size:28px;
+}
+
+.footer-about h3{
+    font-size:22px;
+}
+
+.payment h2{
+    font-size:24px;
+}
+
+.payment-icons{
+    gap:18px;
+}
+
+.payment-icons i{
+    font-size:38px;
+}
+
+.payment p{
+    font-size:15px;
+}
+
+.copy{
+    font-size:14px;
+}
+
+}
 </style>
 </head>
 
@@ -416,7 +596,103 @@ text-align:center;
 </section>
 
 <footer>
-<p>© 2026 Tujje Safaris</p>
+    <div class="footer-container">
+
+<div class="footer-about">
+
+<p>
+
+We are here to help you plan your dream safari adventure in Uganda and East Africa. Our friendly team is just a call or message away.
+
+</p>
+
+<h3>Kampala & Jinja, Uganda</h3>
+
+<p><i class="fas fa-phone"></i> +256 702 094 292</p>
+
+<p><i class="fas fa-phone"></i> +256 701 939 235</p>
+
+<p><i class="fas fa-phone"></i> +256 774 674 861</p>
+
+<p>
+
+<i class="fas fa-envelope"></i>
+
+<a href="mailto:info@tujjesafaris.com">
+
+info@tujjesafaris.com
+
+</a>
+
+</p>
+
+</div>
+
+<div class="footer-menu">
+
+<h2>Our Menu</h2>
+
+<ul>
+
+<li><a href="#">Services</a></li>
+
+<li><a href="#">Lodges & Parks</a></li>
+
+<li><a href="#">Featured Trips</a></li>
+
+<li><a href="#">Destinations</a></li>
+
+<li><a href="#">Gallery</a></li>
+
+<li><a href="#">About Us</a></li>
+
+<li><a href="#">Terms & Conditions</a></li>
+
+<li><a href="#">Privacy Policy</a></li>
+
+<li><a href="#">Contact Us</a></li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="payment">
+
+<h2>Secure Payment Methods</h2>
+
+<div class="payment-icons">
+
+<i class="fab fa-cc-visa"></i>
+
+<i class="fab fa-cc-mastercard"></i>
+
+<i class="fab fa-cc-paypal"></i>
+
+<i class="fab fa-cc-stripe"></i>
+
+<i class="fab fa-google-pay"></i>
+
+<i class="fab fa-apple-pay"></i>
+
+<i class="fas fa-credit-card"></i>
+
+</div>
+
+<p>
+
+We accept Visa, Mastercard, PayPal, Stripe, Apple Pay, Google Pay and all major Debit & Credit Cards for secure online bookings.
+
+</p>
+
+</div>
+
+<div class="copy">
+
+&copy; <span id="year"></span> Tujje Safaris. All Rights Reserved.
+
+</div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
