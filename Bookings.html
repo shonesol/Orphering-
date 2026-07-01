@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tujje Safaris</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+/* PASTE PART 2 CSS HERE */
+/* =========================
+   TUJJE SAFARIS CSS PART 2A
+   ========================= */
+
+/* ===== RESET ===== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#fff8e6;
+    color:#1b1b1b;
+    overflow-x:hidden;
+}
+
+/* ===== HEADER ===== */
+
+header{
+    width:100%;
+    background:linear-gradient(90deg,#1e88e5,#ff8f00);
+    color:#fff;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+header h1{
+    font-size:30px;
+    font-weight:900;
+    color:#FFD700;
+}
+
+nav{
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#fff;
+    font-weight:600;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#FFD700;
+}
+
+/* ===== HERO SLIDER ===== */
+
+.hero-slider{
+    width:100%;
+    height:90vh;
+    position:relative;
+    overflow:hidden;
+}
+
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+
+    background-size:cover;
+    background-position:center;
+
+    opacity:0;
+    transition:opacity 1s ease-in-out;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.slide.active{
+    opacity:1;
+}
+
+.overlay{
+    width:100%;
+    height:100%;
+    background:linear-gradient(rgba(30,136,229,.45),
+                               rgba(255,143,0,.45));
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.overlay h2{
+    color:white;
+    font-size:55px;
+    font-weight:900;
+    margin-bottom:20px;
+    text-shadow:0 3px 10px rgba(0,0,0,.5);
+}
+
+.overlay p{
+    color:white;
+    font-size:22px;
+    max-width:800px;
+    margin-bottom:35px;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 35px;
+    background:#d4af37;
+    color:#1b1b1b;
+    text-decoration:none;
+    font-weight:700;
+    border-radius:40px;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#ff8f00;
+    color:#fff;
+    transform:translateY(-3px);
+}
+
+/* ===== SECTION ===== */
+
+section{
+    padding:80px 8%;
+}
+
+.title{
+    text-align:center;
+    color:#ff8f00;
+    font-size:40px;
+    font-weight:900;
+    margin-bottom:40px;
+}
+
+/* ===== PACKAGES ===== */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#fff;
+    border-radius:15px;
+    padding:30px;
+    text-align:center;
+
+    border-top:6px solid #d4af37;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card h3{
+    color:#1e88e5;
+    margin-bottom:15px;
+    font-size:24px;
+}
+
+.card p{
+    color:#555;
+    line-height:1.6;
+}
+/* ===========================
+   BOOKING SECTION
+=========================== */
+
+#booking{
+    background:#fff8e6;
+}
+
+#bookingForm{
+    max-width:900px;
+    margin:0 auto;
+    background:#fff;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+    border-top:6px solid #d4af37;
+}
+
+#bookingForm input,
+#bookingForm select,
+#bookingForm textarea{
+
+    width:100%;
+    padding:15px;
+    margin-bottom:18px;
+
+    border:2px solid #eee;
+    border-radius:10px;
+
+    font-size:16px;
+
+    transition:.3s;
+
+    outline:none;
+}
+
+#bookingForm input:focus,
+#bookingForm select:focus,
+#bookingForm textarea:focus{
+
+    border-color:#1e88e5;
+
+    box-shadow:0 0 10px rgba(30,136,229,.25);
+
+}
+
+#bookingForm textarea{
+
+    min-height:150px;
+
+    resize:vertical;
+
+}
+
+#bookingForm button{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:linear-gradient(90deg,#1e88e5,#ff8f00);
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+#bookingForm button:hover{
+
+    background:linear-gradient(90deg,#ff8f00,#d4af37);
+
+    transform:translateY(-2px);
+
+}
+
+.row{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+@media(max-width:768px){
+
+.row{
+
+grid-template-columns:1fr;
+
+}
+
+#bookingForm{
+
+padding:25px;
+
+}
+
+}
+
+/* ===========================
+   PAYMENT METHODS
+=========================== */
+
+.payments{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+margin-top:20px;
+
+}
+
+.payments img{
+
+width:70px;
+
+height:auto;
+
+background:#fff;
+
+padding:10px;
+
+border-radius:10px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.12);
+
+transition:.3s;
+
+}
+
+.payments img:hover{
+
+transform:scale(1.08);
+
+}
+/* ===================================
+   REVIEWS SECTION
+=================================== */
+
+#reviews{
+    background:#ffffff;
+    padding:80px 20px;
+}
+.review-box h3{
+    color:#1e88e5;
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.review-box .stars{
+    color:#ffb400;
+    font-size:22px;
+    margin:10px 0;
+}
+
+.review-box p{
+    color:#555;
+    line-height:1.7;
+    font-size:16px;
+}
+.reviews-section{
+    padding:60px 20px;
+    background:#fff8e6;
+    text-align:center;
+}
+
+.review-slider{
+    max-width:600px;
+    margin:30px auto;
+}
+
+.review-box{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
+    border-top:5px solid #d4af37;
+    transition:opacity 0.5s ease;
+    min-height:140px;
+}
+
+.review-box h3{
+    color:#1e88e5;
+    margin-bottom:10px;
+}
+
+.review-box p{
+    margin:6px 0;
+}
+/* ===================================
+   SOCIAL SECTION
+=================================== */
+
+.social-section{
+    background:linear-gradient(135deg,#1e88e5,#ff8f00,#d4af37);
+    padding:70px 20px;
+    text-align:center;
+    color:#fff;
+}
+
+.social-section h2{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.social-section p{
+    max-width:700px;
+    margin:0 auto 30px;
+    line-height:1.8;
+}
+
+.social-icons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:18px;
+}
+
+.social-icons a{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:#fff;
+    color:#1e88e5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    font-size:24px;
+    transition:.3s;
+}
+
+.social-icons a:hover{
+    background:#d4af37;
+    color:#fff;
+    transform:translateY(-5px);
+}
+
+/* ===================================
+   FOOTER
+=================================== */
+
+footer{
+    background:#1b1b1b;
+    color:#fff;
+    padding:60px 20px 30px;
+}
+
+.footer-grid{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:35px;
+}
+
+footer h3{
+    color:#d4af37;
+    margin-bottom:15px;
+}
+
+footer p,
+footer a{
+    color:#ddd;
+    text-decoration:none;
+    line-height:1.8;
+}
+
+footer a:hover{
+    color:#ff8f00;
+}
+
+.copyright{
+    text-align:center;
+    margin-top:40px;
+    border-top:1px solid rgba(255,255,255,.15);
+    padding-top:20px;
+    color:#aaa;
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media(max-width:992px){
+
+    .overlay h2{
+        font-size:42px;
+    }
+
+    .overlay p{
+        font-size:18px;
+    }
+}
+
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:12px;
+    }
+
+    .overlay h2{
+        font-size:32px;
+    }
+
+    .overlay p{
+        font-size:16px;
+    }
+
+    .title{
+        font-size:30px;
+    }
+
+    .social-section h2{
+        font-size:30px;
+    }
+}
+
+@media(max-width:480px){
+
+    .overlay h2{
+        font-size:26px;
+    }
+
+    .overlay p{
+        font-size:15px;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    .review-box{
+        padding:25px;
+    }
+
+    .payments img{
+        width:55px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>TUJJE SAFARIS</h1>
+
+<nav>
+
+<a href="#">Home</a>
+<a href="#packages">Packages</a>
+<a href="#booking">Booking</a>
+<a href="#reviews">Reviews</a>
+<a href="#contact">Contact</a>
+
+</nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero-slider">
+
+<div class="slide active"
+style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee');">
+
+<div class="overlay">
+<h2>Discover Africa in Luxury Style</h2>
+<p>Explore Uganda, Kenya, Tanzania and Rwanda.</p>
+<a href="#booking" class="btn">Book Safari</a>
+</div>
+
+</div>
+
+<div class="slide"
+style="background-image:url('https://images.unsplash.com/photo-1548013146-72479768bada');">
+
+<div class="overlay">
+<h2>Wildlife Adventures</h2>
+<p>Meet the Big Five.</p>
+</div>
+
+</div>
+
+<div class="slide"
+style="background-image:url('https://images.unsplash.com/photo-1523805009345-7448845a9e53');">
+
+<div class="overlay">
+<h2>Gorilla Trekking</h2>
+<p>Experience unforgettable moments.</p>
+</div>
+
+</div>
+
+<div class="slide"
+style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470');">
+
+<div class="overlay">
+<h2>Luxury East African Safaris</h2>
+<p>Create memories that last forever.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- PACKAGES -->
+
+<section id="packages">
+
+<h2 class="title">Safari Packages</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>🦍 Gorilla Trekking</h3>
+<p>Uganda & Rwanda</p>
+</div>
+
+<div class="card">
+<h3>🦁 Wildlife Safari</h3>
+<p>Queen Elizabeth National Park</p>
+</div>
+
+<div class="card">
+<h3>🐘 Masai Mara Safari</h3>
+<p>Kenya</p>
+</div>
+
+<div class="card">
+<h3>🦓 Serengeti Safari</h3>
+<p>Tanzania</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- BOOKING -->
+
+<section id="booking">
+
+<h2 class="title">Book Your Safari</h2>
+
+<form id="bookingForm">
+
+<input id="name" placeholder="Full Name" required>
+
+<input id="email" type="email" placeholder="Email Address" required>
+
+<input id="phone" placeholder="Phone / WhatsApp" required>
+
+<input id="country" placeholder="Country">
+
+<select id="destination">
+
+<option>Uganda</option>
+<option>Kenya</option>
+<option>Tanzania</option>
+<option>Rwanda</option>
+
+</select>
+
+<select id="package">
+
+<option>Gorilla Trekking</option>
+<option>Wildlife Safari</option>
+<option>Luxury Safari</option>
+<option>Honeymoon Safari</option>
+
+</select>
+
+<input id="date" type="date">
+
+<input id="days" type="number" placeholder="Number of Days">
+
+<input id="adults" type="number" placeholder="Adults">
+
+<input id="children" type="number" placeholder="Children">
+
+<select id="accommodation">
+
+<option>Budget</option>
+<option>Mid-range</option>
+<option>Luxury</option>
+
+</select>
+
+<select id="pickup">
+
+<option>Airport Pickup - Yes</option>
+<option>Airport Pickup - No</option>
+
+</select>
+
+<textarea id="message"
+placeholder="Special Requests"></textarea>
+
+<button type="submit">
+Book Safari
+</button>
+
+</form>
+
+</section>
+<section class="reviews-section">
+
+<h2 class="title">What Our Clients Say</h2>
+
+<!-- REVIEW FORM -->
+<form id="reviewForm">
+    <input id="rname" placeholder="Your Name" required>
+    <textarea id="rtext" placeholder="Write your review..." required></textarea>
+
+    <select id="rrating">
+        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="1">⭐</option>
+    </select>
+
+    <button type="submit">Submit Review</button>
+</form>
+
+<!-- SLIDER -->
+<div class="review-slider">
+    <div id="reviewBox" class="review-box">
+        Loading reviews...
+    </div>
+</div>
+
+</section>
+
+<!-- SOCIAL -->
+
+<section class="social-section">
+
+<h2>Follow Tujje Safaris</h2>
+
+<div class="social-icons">
+
+<a href="#">Facebook</a>
+<a href="#">Instagram</a>
+<a href="#">WhatsApp</a>
+<a href="#">YouTube</a>
+<a href="#">TikTok</a>
+
+</div>
+
+</section>
+
+<footer id="contact">
+
+<h3>Tujje Safaris</h3>
+
+<p>Kampala • Uganda</p>
+
+<p>📞 +256 702 094 292</p>
+
+<p>📧 tujjesafaris759@gmail.com</p>
+
+<h4>Payment Methods</h4>
+
+<div class="payments">
+
+<img src="https://cdn-icons-png.flaticon.com/512/196/196578.png">
+
+<img src="https://cdn-icons-png.flaticon.com/512/196/196566.png">
+
+<img src="https://cdn-icons-png.flaticon.com/512/349/349221.png">
+
+<img src="https://cdn-icons-png.flaticon.com/512/825/825454.png">
+
+</div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  onSnapshot
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* ================= FIREBASE CONFIG ================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyA8d6BCwS5JKXwFUVcJy80hw3jMf5XeYWs",
+  authDomain: "tujjesafaris-2c572.firebaseapp.com",
+  projectId: "tujjesafaris-2c572",
+  storageBucket: "tujjesafaris-2c572.firebasestorage.app",
+  messagingSenderId: "819647557828",
+  appId: "1:819647557828:web:ff4d3935c878c5c1075991",
+  measurementId: "G-K89RQPQHLH"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* ================= EMAILJS INIT ================= */
+emailjs.init("YOUR_PUBLIC_KEY");
+
+/* ===================================================
+   🔥 BOOKING SYSTEM (FIREBASE + EMAIL)
+=================================================== */
+
+document.getElementById("bookingForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const data = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    country: document.getElementById("country").value,
+    destination: document.getElementById("destination").value,
+    package: document.getElementById("package").value,
+    date: document.getElementById("date").value,
+    message: document.getElementById("message").value,
+    createdAt: Date.now()
+  };
+
+  try {
+    /* SAVE TO FIREBASE */
+    await addDoc(collection(db, "bookings"), data);
+
+    /* SEND EMAIL */
+    await emailjs.send(
+      "YOUR_SERVICE_ID",
+      "YOUR_TEMPLATE_ID",
+      {
+        to_email: "tujjesafaris759@gmail.com",
+        ...data
+      }
+    );
+
+    alert("Booking sent successfully!");
+    e.target.reset();
+
+    window.open(
+      "https://wa.me/256702094292?text=New Safari Booking received",
+      "_blank"
+    );
+
+  } catch (err) {
+    console.error(err);
+    alert("Booking failed!");
+  }
+});
+
+
+/* ===================================================
+   ⭐ REVIEWS SYSTEM (FIREBASE + SLIDER)
+=================================================== */
+
+let reviews = [];
+let index = 0;
+
+/* SAVE REVIEW */
+window.submitReview = async function () {
+
+  const review = {
+    name: document.getElementById("rname").value,
+    text: document.getElementById("rtext").value,
+    rating: Number(document.getElementById("rrating").value),
+    createdAt: Date.now()
+  };
+
+  if (!review.name || !review.text) {
+    alert("Fill all fields");
+    return;
+  }
+
+  try {
+    await addDoc(collection(db, "reviews"), review);
+    document.getElementById("rname").value = "";
+    document.getElementById("rtext").value = "";
+    alert("Review saved!");
+  } catch (err) {
+    alert("Failed to save review");
+  }
+};
+
+
+/* REALTIME REVIEWS */
+const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+
+onSnapshot(q, (snap) => {
+
+  reviews = [];
+
+  snap.forEach(doc => {
+    reviews.push(doc.data());
+  });
+
+  if (reviews.length > 0) {
+    index = 0;
+    showReview();
+    setInterval(showReview, 4000);
+  }
+});
+
+
+/* SLIDER */
+function showReview() {
+  const box = document.getElementById("reviewBox");
+
+  if (!reviews.length) return;
+
+  const r = reviews[index];
+
+  box.style.opacity = "0";
+
+  setTimeout(() => {
+    box.innerHTML = `
+      <h3>${r.name}</h3>
+      <p style="color:#d4af37">${"⭐".repeat(r.rating)}</p>
+      <p>${r.text}</p>
+    `;
+
+    box.style.opacity = "1";
+
+    index = (index + 1) % reviews.length;
+
+  }, 300);
+}
+
+</script>
+</body>
+</html>
