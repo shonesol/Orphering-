@@ -6,7 +6,7 @@
 <title>Tujje Safaris</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
 
 /* ===== BASE ===== */
@@ -128,27 +128,32 @@ cursor:pointer;
 
 /* ===== SOCIAL ===== *//* Social */
 
-.social{
-    text-align:center;
-    margin:40px 0 20px;
+.social-icons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:18px;
+    margin-top:35px;
 }
 
-.social a{
-    display:inline-flex;
-    align-items:center;
+.social-icons a{
+    width:50px;
+    height:50px;
+    display:flex;
     justify-content:center;
-    width:48px;
-    height:48px;
-    margin:8px;
+    align-items:center;
+    text-decoration:none;
     border-radius:50%;
     background:var(--blue);
-    color:white;
-    text-decoration:none;
-    transition:.3s;
+    color:var(--white);
+    font-size:22px;
+    transition:.3s ease;
 }
 
-.social a:hover{
+.social-icons a:hover{
     background:var(--orange);
+    color:var(--gold);
     transform:translateY(-5px);
 }
 
@@ -589,18 +594,34 @@ footer{
 <section class="social-section">
 <h2>Connect With Us</h2>
 
-<div class="social">
+<div class="social-icons">
+    <a href="https://www.facebook.com/profile.php?id=61554350095901&mibextid=eQY6cl" target="_blank" title="Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+    </a>
 
-<a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/tujje_safaris_?igsh=MXJoczN4eXZrM3UzNg%3D%3D&utm_source=qr" target="_blank" title="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
 
-<a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="https://x.com" target="_blank" title="X (Twitter)">
+        <i class="fa-brands fa-x-twitter"></i>
+    </a>
 
-<a href="#"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://youtube.com" target="_blank" title="YouTube">
+        <i class="fa-brands fa-youtube"></i>
+    </a>
 
-<a href="#"><i class="fab fa-youtube"></i></a>
+    <a href="https://wa.me/256702094292" target="_blank" title="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
-<a href="#"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.tiktok.com/@tujje.safaris?_t=8kRsJIGa1RO&_r=1" target="_blank" title="TikTok">
+        <i class="fa-brands fa-tiktok"></i>
+    </a>
 
+    <a href="https://linkedin.com" target="_blank" title="LinkedIn">
+        <i class="fa-brands fa-linkedin-in"></i>
+    </a>
 </div>
 </section>
 
