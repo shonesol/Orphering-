@@ -219,6 +219,103 @@ footer{
 a{
     color:#1e88e5;
 }
+    /* SOCIAL MEDIA SECTION */
+
+.social-section{
+    width:100%;
+    padding:80px 20px;
+    background:linear-gradient(135deg,#003B8E,#F59E0B,#FFD700);
+    text-align:center;
+}
+
+.social-container{
+    max-width:1100px;
+    margin:auto;
+}
+
+.social-container h2{
+    color:#FFD700;
+    font-size:42px;
+    margin-bottom:20px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+
+.social-container p{
+    color:#fff;
+    font-size:18px;
+    line-height:1.8;
+    max-width:850px;
+    margin:auto auto 45px;
+}
+
+.social-icons{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.social-icons a{
+    width:180px;
+    padding:20px;
+    text-decoration:none;
+    border-radius:18px;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    transition:.4s;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.social-icons i{
+    display:block;
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+.facebook{
+    background:#0d6efd;
+}
+
+.instagram{
+    background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+}
+
+.whatsapp{
+    background:#25D366;
+}
+
+.youtube{
+    background:#ff0000;
+}
+
+.tiktok{
+    background:#111827;
+}
+
+.social-icons a:hover{
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+
+@media(max-width:768px){
+
+.social-container h2{
+    font-size:30px;
+}
+
+.social-icons a{
+    width:140px;
+    padding:18px;
+}
+
+.social-icons i{
+    font-size:35px;
+}
+
+}
 </style>
 </head>
 <body>
@@ -290,7 +387,49 @@ a{
         WhatsApp Us
     </a>
 </section>
+    
+<!-- Social Media Section -->
+<section class="social-section">
+    <div class="social-container">
+        <h2>Connect With Tujje Safaris</h2>
+        <p>
+            Follow us on our social media platforms for exciting travel updates,
+            breathtaking safari photos, exclusive offers, and unforgettable East
+            African adventure experiences.
+        </p>
 
+        <div class="social-icons">
+            <a href="https://facebook.com/" target="_blank" class="facebook">
+                <i class="fab fa-facebook-f"></i>
+                <span>Facebook</span>
+            </a>
+
+            <a href="https://instagram.com/" target="_blank" class="instagram">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
+
+            <a href="https://wa.me/256700000000" target="_blank" class="whatsapp">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+
+            <a href="https://youtube.com/" target="_blank" class="youtube">
+                <i class="fab fa-youtube"></i>
+                <span>YouTube</span>
+            </a>
+
+            <a href="https://tiktok.com/" target="_blank" class="tiktok">
+                <i class="fab fa-tiktok"></i>
+                <span>TikTok</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <!-- FOOTER -->
 <footer>
     <div class="footer-grid">
