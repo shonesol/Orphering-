@@ -309,82 +309,164 @@ text-align:center;
 <p>© 2026 Tujje Safaris</p>
 </footer>
 
-<!-- SLIDER -->
-<script>
-let slides=document.querySelectorAll(".slide");
-let i=0;
-
-setInterval(()=>{
-slides[i].classList.remove("active");
-i=(i+1)%slides.length;
-slides[i].classList.add("active");
-},4000);
-</script>
-
-<!-- EMAILJS -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
 emailjs.init("JS9FCzRaz44ibCjcz");
 
-document.getElementById("bookingForm").addEventListener("submit", function(e){
+document.getElementById("bookingForm").addEventListener("submit", async function(e){
 e.preventDefault();
 
-const btn=this.querySelector("button");
-btn.disabled=true;
-btn.innerHTML="Sending...";
+const btn = this.querySelector("button");
+btn.disabled = true;
+btn.innerHTML = "Sending...";
 
-const data={
-to_email:"tujjesafaris759@gmail.com",
-name:document.getElementById("name").value,
-email:document.getElementById("email").value,
-phone:document.getElementById("phone").value,
-country:document.getElementById("country").value,
-destination:document.getElementById("destination").value,
-package:document.getElementById("package").value,
-date:document.getElementById("date").value,
-message:document.getElementById("message").value
+const data = {
+to_email: "tujjesafaris759@gmail.com",
+name: document.getElementById("name").value,
+email: document.getElementById("email").value,
+phone: document.getElementById("phone").value,
+country: document.getElementById("country").value,
+destination: document.getElementById("destination").value,
+package: document.getElementById("package").value,
+date: document.getElementById("date").value,
+message: document.getElementById("message").value
 };
 
-emailjs.send("service_mun08xi","template_j2s60y8",data)
-.then(()=>{
-alert("Booking sent successfully to Tujje Safaris!");
+try {
+
+/* 1. SEND EMAIL */
+await emailjs.send("service_mun08xi","template_j2s60y8",data);
+
+/* 2. SAVE TO FIREBASE (handled in module script too but ok safe) */
+
+alert("✅ Booking sent successfully!");
 this.reset();
 window.open("https://wa.me/256702094292","_blank");
-})
-.catch(err=>{
-console.error(err);
-alert("Failed to send booking.");
-})
-.finally(()=>{
-btn.disabled=false;
-btn.innerHTML="Book Now";
-});
 
+} catch (err) {
+console.error(err);
+alert("❌ Failed to send booking. Try again.");
+}
+
+btn.disabled = false;
+btn.innerHTML = "Book Now";
 });
 </script>
-
-<!-- FIREBASE -->
-<script type="module">
+    <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+getFirestore,
+collection,
+addDoc,
+getDocs,
+query,
+orderBy,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
-apiKey: "AIzaSyA8d6BCwS5JKXwFUVcJy80hw3jMf5XeYWs",
+apiKey: "AIzaSyA8d6BCwS5JKXWFUVcJy80hw3jMf5XeYWs",
 authDomain: "tujjesafaris-2c572.firebaseapp.com",
 projectId: "tujjesafaris-2c572",
 storageBucket: "tujjesafaris-2c572.firebasestorage.app",
 messagingSenderId: "819647557828",
-appId: "1:819647557828:web:ff4d3935c878c5c1075991",
-measurementId: "G-K89RQPQHLH"
+appId: "1:819647557828:web:ff4d3935c878c5c1075991"
 };
 
-const app=initializeApp(firebaseConfig);
-const db=getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-document.getElementById("bookingForm").addEventListener("submit",async(e)=>{
+
+
+
+
+/* =========================
+   REVIEWS SAVE
+========================= */
+window.submitReview = async function () {
+
+const name = document.getElementById("rname").value;
+const text = document.getElementById("rtext").value;
+const rating = document.getElementById("rrating").value;
+
+try {
+await addDoc(collection(db,"reviews"),{
+name,
+text,
+rating,
+createdAt: serverTimestamp()
+});
+
+alert("⭐ Review submitted successfully!");
+document.getElementById("reviewForm").reset();
+
+loadReviews();
+
+} catch (err) {
+console.error(err);
+alert("❌ Failed to submit review.");
+}
+};
+
+
+
+
+/* =========================
+   LOAD + SLIDER REVIEWS
+========================= */
+
+let reviews = [];
+let index = 0;
+
+async function loadReviews(){
+
+const q = query(collection(db,"reviews"), orderBy("createdAt","desc"));
+const snap = await getDocs(q);
+
+reviews = [];
+
+snap.forEach(doc=>{
+reviews.push(doc.data());
+});
+
+if(reviews.length > 0){
+showReview();
+}
+}
+
+function showReview(){
+
+const box = document.getElementById("reviewBox");
+
+const r = reviews[index];
+
+box.innerHTML = `
+<h3>${r.name}</h3>
+<p>${"⭐".repeat(r.rating)}</p>
+<p>"${r.text}"</p>
+`;
+
+index = (index + 1) % reviews.length;
+}
+
+/* auto slide */
+setInterval(()=>{
+if(reviews.length > 0){
+showReview();
+}
+}, 4000);
+
+loadReviews();
+
+
+
+
+/* OPTIONAL: SAVE BOOKINGS ALSO IN FIREBASE HERE (SAFE BACKUP) */
+document.getElementById("bookingForm").addEventListener("submit", async (e)=>{
 e.preventDefault();
 
+try{
 await addDoc(collection(db,"bookings"),{
 name:document.getElementById("name").value,
 email:document.getElementById("email").value,
@@ -397,6 +479,9 @@ message:document.getElementById("message").value,
 status:"Pending",
 createdAt:serverTimestamp()
 });
+}catch(err){
+console.error("Firestore booking error:",err);
+}
 
 });
 </script>
