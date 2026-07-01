@@ -264,20 +264,20 @@ text-align:center;
 #overlay.show {
   display: block;
 }
-    .back-btn {
-  background: linear-gradient(45deg, #1e90ff, #ff8c00, #d4af37); /* blue, orange, gold */
+   .home-btn {
+  display: inline-block;
+  background: linear-gradient(45deg, #1e90ff, #ff8c00, #d4af37);
   color: white;
-  border: none;
+  text-decoration: none;
   padding: 10px 18px;
   font-size: 16px;
   font-weight: 600;
   border-radius: 8px;
-  cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.back-btn:hover {
+.home-btn:hover {
   transform: scale(1.05);
   opacity: 0.9;
 }
@@ -304,9 +304,9 @@ text-align:center;
 <!-- SIDEBAR MENU -->
 <div id="sidebar" class="sidebar">
   <h2>TUJJE SAFARIS</h2>
-    <button class="back-btn" onclick="history.back()">
-  ⬅ Back
-</button>
+  <a href="index.html" class="home-btn">
+  ⬅ Back to Home
+</a>
      <a href="#">⭐ Featured Trips</a>
      <a href="#">💼Services</a>
   <a href="#">🖼️ Gallery</a>
