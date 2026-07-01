@@ -1,1 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tujje Safaris - Booking</title>
 
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+body{
+  font-family: Arial;
+  margin:0;
+  background:#f4f4f4;
+}
+
+header{
+  background: linear-gradient(90deg,#1e88e5,#2ecc71,gold);
+  color:white;
+  padding:15px;
+  text-align:center;
+}
+
+.container{
+  width:90%;
+  max-width:500px;
+  margin:20px auto;
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+input,textarea,select{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  background:#1e88e5;
+  color:white;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button:hover{
+  background:#2ecc71;
+}
+
+.alert{
+  position:fixed;
+  top:10px;
+  right:10px;
+  padding:10px 15px;
+  color:white;
+  border-radius:5px;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Tujje Safaris Booking</h1>
+</header>
+
+<div class="alert" id="alertBox"></div>
+
+<!-- BOOKING FORM -->
+<div class="container">
+<h2>Book Your Safari</h2>
+
+<form id="bookingForm">
+
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="text" id="phone" placeholder="Phone Number" required>
+<input type="text" id="country" placeholder="Country" required>
+
+<select id="destination" required>
+<option value="">Select Destination</option>
+<option>Kidepo Valley</option>
+<option>Queen Elizabeth</option>
+<option>Murchison Falls</option>
+<option>Bwindi Forest</option>
+</select>
+
+<select id="package" required>
+<option value="">Select Package</option>
+<option>Budget Safari</option>
+<option>Standard Safari</option>
+<option>Luxury Safari</option>
+</select>
+
+<input type="date" id="date" required>
+
+<textarea id="message" placeholder="Additional Message"></textarea>
+
+<button type="submit">Book Now</button>
+</form>
+</div>
+
+<script>
+/* ================= FIREBASE ================= */
+const firebaseConfig = {
+apiKey: "AIzaSyAUxwj4JVPWAz3oDjPTSaEUot49pHxmWQg",
+authDomain: "tujjesafari-dbda9.firebaseapp.com",
+projectId: "tujjesafari-dbda9",
+storageBucket: "tujjesafari-dbda9.appspot.com",
+messagingSenderId: "39777982092",
+appId: "1:39777982092:web:bc488a73cf7bb637204da9"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+/* ================= EMAILJS ================= */
+emailjs.init("JS9FCzRaz44ibCjcz");
+
+const EMAIL_SERVICE = "service_mun08xi";
+const EMAIL_TEMPLATE = "template_j2s60y8";
+
+/* ================= ALERT ================= */
+function showAlert(msg,color="green"){
+const box=document.getElementById("alertBox");
+box.style.background=color;
+box.innerText=msg;
+box.style.display="block";
+setTimeout(()=>box.style.display="none",3000);
+}
+
+/* ================= BOOKING ================= */
+document.getElementById("bookingForm").addEventListener("submit", async function(e){
+e.preventDefault();
+
+const btn = this.querySelector("button");
+btn.disabled = true;
+btn.innerHTML = "Sending...";
+
+const bookingData = {
+name: document.getElementById("name").value,
+email: document.getElementById("email").value,
+phone: document.getElementById("phone").value,
+country: document.getElementById("country").value,
+destination: document.getElementById("destination").value,
+package: document.getElementById("package").value,
+date: document.getElementById("date").value,
+message: document.getElementById("message").value
+};
+
+try {
+
+/* SEND EMAIL */
+await emailjs.send(EMAIL_SERVICE, EMAIL_TEMPLATE, {
+to_email: "tujjesafari@gmail.com",
+...bookingData
+});
+
+/* SAVE TO FIREBASE */
+await db.collection("bookings").add({
+...bookingData,
+status:"Pending",
+createdAt: new Date()
+});
+
+showAlert("Booking sent successfully!");
+this.reset();
+
+/* WhatsApp redirect */
+window.open("https://wa.me/256702094292","_blank");
+
+} catch (err) {
+console.error(err);
+showAlert("Booking failed!", "red");
+}
+
+btn.disabled = false;
+btn.innerHTML = "Book Now";
+});
+</script>
+
+</body>
+</html>
