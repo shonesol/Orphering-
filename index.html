@@ -156,7 +156,37 @@ color:white;
 padding:40px;
 text-align:center;
 }
+.reviews-section{
+    padding:60px 20px;
+    background:#fff8e6;
+    text-align:center;
+}
 
+.review-slider{
+    max-width:600px;
+    margin:30px auto;
+    overflow:hidden;
+    position:relative;
+}
+
+.review-box{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
+    border-top:5px solid #d4af37;
+    transition:opacity 0.5s ease;
+    min-height:140px;
+}
+
+.review-box h3{
+    color:#1e88e5;
+    margin-bottom:10px;
+}
+
+.review-box p{
+    margin:6px 0;
+}
 </style>
 </head>
 
@@ -228,7 +258,32 @@ text-align:center;
 
 </form>
 </section>
+<section class="reviews-section">
 
+<h2 class="title">What Our Clients Say</h2>
+
+<!-- Review Form -->
+<form id="reviewForm">
+    <input id="rname" placeholder="Your Name" required>
+    <textarea id="rtext" placeholder="Write your review..." required></textarea>
+
+    <select id="rrating">
+        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="1">⭐</option>
+    </select>
+
+    <button type="button" onclick="submitReview()">Submit Review</button>
+</form>
+
+<!-- SLIDER DISPLAY -->
+<div class="review-slider">
+    <div id="reviewBox" class="review-box"></div>
+</div>
+
+</section>
 <!-- SOCIAL -->
 <section class="social-section">
 <h2>Connect With Us</h2>
@@ -336,6 +391,113 @@ createdAt:serverTimestamp()
 });
 
 });
+</script>
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* ===== YOUR FIREBASE CONFIG ===== */
+const firebaseConfig = {
+  apiKey: "AIzaSyA8d6BCwS5JKXwFUVcJy80hw3jMf5XeYWs",
+  authDomain: "tujjesafaris-2c572.firebaseapp.com",
+  projectId: "tujjesafaris-2c572",
+  storageBucket: "tujjesafaris-2c572.firebasestorage.app",
+  messagingSenderId: "819647557828",
+  appId: "1:819647557828:web:ff4d3935c878c5c1075991",
+  measurementId: "G-K89RQPQHLH"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+let reviews = [];
+let index = 0;
+
+/* ===== SAVE REVIEW ===== */
+window.submitReview = async function () {
+    const name = document.getElementById("rname").value;
+    const text = document.getElementById("rtext").value;
+    const rating = document.getElementById("rrating").value;
+
+    if (!name || !text) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    try {
+        await addDoc(collection(db, "reviews"), {
+            name,
+            text,
+            rating,
+            createdAt: Date.now()
+        });
+
+        document.getElementById("rname").value = "";
+        document.getElementById("rtext").value = "";
+
+        loadReviews();
+
+        alert("Review submitted successfully!");
+
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Failed to submit review");
+    }
+};
+
+/* ===== LOAD REVIEWS ===== */
+async function loadReviews() {
+    const box = document.getElementById("reviewBox");
+
+    const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+    const snap = await getDocs(q);
+
+    reviews = [];
+
+    snap.forEach(doc => {
+        reviews.push(doc.data());
+    });
+
+    if (reviews.length === 0) {
+        box.innerHTML = "<p>No reviews yet</p>";
+        return;
+    }
+
+    showReview();
+    setInterval(showReview, 4000);
+}
+
+/* ===== SLIDER (ONE BY ONE) ===== */
+function showReview() {
+    const box = document.getElementById("reviewBox");
+
+    const r = reviews[index];
+
+    box.style.opacity = "0";
+
+    setTimeout(() => {
+        box.innerHTML = `
+            <h3>${r.name}</h3>
+            <p>${"⭐".repeat(r.rating)}</p>
+            <p>${r.text}</p>
+        `;
+
+        box.style.opacity = "1";
+
+        index++;
+        if (index >= reviews.length) index = 0;
+
+    }, 300);
+}
+
+loadReviews();
 </script>
 
 </body>
