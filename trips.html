@@ -3,133 +3,241 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tujje Safaris - Featured Trips</title>
+<title>Tujje Safaris</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
 
 <style>
 
-/* ===== GENERAL STYLE ===== */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
+/* ================= THEME COLORS ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
-/* ===== HEADER ===== */
-header {
-    background: linear-gradient(135deg, #003B8E, #F59E0B, #FFD700);
-    color: white;
-    text-align: center;
-    padding: 20px;
+body{
+    background:#fff8e6;
+    color:#1b1b1b;
 }
 
-/* ===== FEATURED TRIPS ===== */
-.featured-trips {
-    padding: 40px 20px;
-    text-align: center;
+/* HEADER */
+header{
+    background:linear-gradient(90deg,#1e88e5,#ff8f00);
+    color:white;
+    padding:20px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
-.featured-trips h2 {
-    color: #003B8E;
-    margin-bottom: 30px;
+/* MENU */
+.menu-container{
+    position:relative;
+    margin-top:10px;
 }
 
-/* SLIDER */
-.slider {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding: 10px;
-    scroll-snap-type: x mandatory;
+.menu-btn{
+    background:#d4af37;
+    border:none;
+    padding:10px 18px;
+    font-weight:800;
+    border-radius:6px;
+    cursor:pointer;
+    color:#1b1b1b;
 }
 
-.trip-card {
-    min-width: 300px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    scroll-snap-align: start;
-    overflow: hidden;
-    padding-bottom: 15px;
+.menu{
+    display:none;
+    position:absolute;
+    right:0;
+    top:50px;
+    background:white;
+    width:260px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    overflow:hidden;
+    z-index:999;
 }
 
-.trip-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
+.menu a{
+    display:block;
+    padding:12px;
+    text-decoration:none;
+    color:#1b1b1b;
+    border-bottom:1px solid #eee;
 }
 
-.trip-card h3 {
-    color: #F59E0B;
-    margin: 10px 0;
+.menu a:hover{
+    background:#fff8e6;
 }
 
-.trip-card p {
-    padding: 0 10px;
-    font-size: 14px;
+/* HERO */
+.hero{
+    height:80vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    background:
+    linear-gradient(rgba(30,136,229,0.5),rgba(255,143,0,0.6)),
+    url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee') center/cover no-repeat;
 }
 
-/* BOOK BUTTON */
-.book-now-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 15px;
-    background: #003B8E;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: 0.3s;
+.hero h2{
+    font-size:48px;
 }
 
-.book-now-btn:hover {
-    background: #F59E0B;
-    color: black;
+/* SECTIONS */
+section{
+    padding:60px 20px;
 }
 
-/* ===== BOOKING SECTION ===== */
-#booking {
-    padding: 50px 20px;
-    background: linear-gradient(135deg, #FFD700, #F59E0B, #003B8E);
-    color: white;
-    text-align: center;
+.title{
+    text-align:center;
+    font-size:32px;
+    font-weight:900;
+    margin-bottom:30px;
+    color:#ff8f00;
 }
 
-#booking h2 {
-    margin-bottom: 20px;
+/* PACKAGES */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    max-width:1100px;
+    margin:auto;
 }
 
-/* FORM */
-.booking-form {
-    max-width: 500px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    color: black;
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
+    border-left:6px solid #d4af37;
 }
 
-.booking-form input,
-.booking-form select,
-.booking-form textarea {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+/* ================= FEATURED TRIPS ================= */
+.featured-trips{
+    padding:60px 20px;
+    text-align:center;
 }
 
-.booking-form button {
-    width: 100%;
-    padding: 10px;
-    background: #003B8E;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.trip-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    max-width:1200px;
+    margin:auto;
 }
 
-.booking-form button:hover {
-    background: #F59E0B;
-    color: black;
+.trip-card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.trip-card:hover{
+    transform:translateY(-5px);
+}
+
+.trip-card h3{
+    color:#ff8f00;
+    margin-bottom:10px;
+}
+
+.trip-card p{
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.book-btn{
+    display:inline-block;
+    padding:10px 15px;
+    background:linear-gradient(90deg,#1e88e5,#ff8f00);
+    color:white;
+    text-decoration:none;
+    border-radius:6px;
+    font-weight:700;
+}
+
+/* BOOKING */
+.booking-section{
+    padding:80px 20px;
+    background:#fff8e6;
+}
+
+.booking-title{
+    text-align:center;
+    color:#ff8f00;
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.booking-text{
+    max-width:850px;
+    margin:auto;
+    text-align:center;
+    margin-bottom:40px;
+}
+
+#bookingForm{
+    max-width:900px;
+    margin:auto;
+    background:#fff;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.row{
+    display:flex;
+    gap:20px;
+    margin-bottom:18px;
+}
+
+.row input,
+.row select{
+    flex:1;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+/* FOOTER (kept minimal) */
+footer{
+    background:#1b1b1b;
+    color:#fff;
+    padding:40px 20px;
+}
+
+/* SOCIAL */
+.social-section{
+    width:100%;
+    padding:50px 15px;
+    background:linear-gradient(135deg,#1e88e5,#ff8f00,#d4af37);
+    text-align:center;
+    color:white;
+}
+
+.social-icons a{
+    display:inline-block;
+    margin:10px;
+    padding:10px 15px;
+    background:#1b1b1b;
+    color:white;
+    border-radius:8px;
+    text-decoration:none;
 }
 
 </style>
@@ -138,71 +246,146 @@ header {
 <body>
 
 <header>
-    <h1>Tujje Safaris</h1>
-    <p>Explore East Africa in Style</p>
+    <h1>TUJJE SAFARIS</h1>
 </header>
 
-<!-- ===== FEATURED TRIPS ===== -->
+<!-- HERO -->
+<section class="hero">
+    <h2>Discover Africa in Luxury Style</h2>
+</section>
+
+<!-- PACKAGES -->
+<section>
+    <h2 class="title">Tujje Safari Packages</h2>
+
+    <div class="grid">
+        <div class="card">Gorilla Trekking 🦍</div>
+        <div class="card">Masai Mara Safari 🐘</div>
+        <div class="card">Serengeti Migration 🦓</div>
+        <div class="card">Rwenzori Hiking 🏔️</div>
+    </div>
+</section>
+
+<!-- ================= FEATURED TRIPS ================= -->
 <section class="featured-trips">
-    <h2>Featured Trips</h2>
+    <h2 class="title">Featured Trips</h2>
 
-    <div class="slider">
+    <div class="trip-grid">
 
+        <!-- UGANDA -->
         <div class="trip-card">
-            <img src="https://source.unsplash.com/300x200/?safari,uganda" alt="">
-            <h3>Murchison Falls Safari</h3>
-            <p>Experience powerful waterfalls and wild animals in Uganda’s biggest park.</p>
-            <a href="#booking" class="book-now-btn">Book Now</a>
+            <h3>Queen Elizabeth NP 🇺🇬</h3>
+            <p>Tree climbing lions & Kazinga Channel cruise.</p>
+            <a href="#booking" class="book-btn">Book Now</a>
         </div>
 
         <div class="trip-card">
-            <img src="https://source.unsplash.com/300x200/?giraffe,africa" alt="">
-            <h3>Kidepo Valley Adventure</h3>
-            <p>Remote wilderness, lions, and breathtaking landscapes.</p>
-            <a href="#booking" class="book-now-btn">Book Now</a>
+            <h3>Murchison Falls NP 🇺🇬</h3>
+            <p>Powerful waterfall & Nile boat safari.</p>
+            <a href="#booking" class="book-btn">Book Now</a>
         </div>
 
         <div class="trip-card">
-            <img src="https://source.unsplash.com/300x200/?chimpanzee,forest" alt="">
-            <h3>Kibale Forest Tour</h3>
-            <p>Meet chimpanzees in their natural rainforest home.</p>
-            <a href="#booking" class="book-now-btn">Book Now</a>
+            <h3>Kidepo Valley NP 🇺🇬</h3>
+            <p>Remote wilderness safari experience.</p>
+            <a href="#booking" class="book-btn">Book Now</a>
         </div>
 
         <div class="trip-card">
-            <img src="https://source.unsplash.com/300x200/?lion,safari" alt="">
-            <h3>Queen Elizabeth Park</h3>
-            <p>Tree climbing lions and scenic boat cruises.</p>
-            <a href="#booking" class="book-now-btn">Book Now</a>
+            <h3>Kibale Forest NP 🇺🇬</h3>
+            <p>Chimpanzee trekking adventure.</p>
+            <a href="#booking" class="book-btn">Book Now</a>
+        </div>
+
+        <!-- KENYA -->
+        <div class="trip-card">
+            <h3>Maasai Mara 🇰🇪</h3>
+            <p>Great migration & big five safari.</p>
+            <a href="#booking" class="book-btn">Book Now</a>
+        </div>
+
+        <div class="trip-card">
+            <h3>Amboseli NP 🇰🇪</h3>
+            <p>Elephants with Kilimanjaro views.</p>
+            <a href="#booking" class="book-btn">Book Now</a>
+        </div>
+
+        <div class="trip-card">
+            <h3>Tsavo East 🇰🇪</h3>
+            <p>Red elephants & wild landscapes.</p>
+            <a href="#booking" class="book-btn">Book Now</a>
+        </div>
+
+        <div class="trip-card">
+            <h3>Lake Nakuru 🇰🇪</h3>
+            <p>Flamingos & rhino sanctuary.</p>
+            <a href="#booking" class="book-btn">Book Now</a>
+        </div>
+
+        <!-- TANZANIA -->
+        <div class="trip-card">
+            <h3>Serengeti 🇹🇿</h3>
+            <p>Endless plains & wildlife migration.</p>
+            <a href="#booking" class="book-btn">Book Now</a>
+        </div>
+
+        <div class="trip-card">
+            <h3>Ngorongoro Crater 🇹🇿</h3>
+            <p>World natural wildlife wonder.</p>
+            <a href="#booking" class="book-btn">Book Now</a>
+        </div>
+
+        <div class="trip-card">
+            <h3>Tarangire 🇹🇿</h3>
+            <p>Elephants & baobab trees.</p>
+            <a href="#booking" class="book-btn">Book Now</a>
+        </div>
+
+        <div class="trip-card">
+            <h3>Lake Manyara 🇹🇿</h3>
+            <p>Tree climbing lions & birds.</p>
+            <a href="#booking" class="book-btn">Book Now</a>
+        </div>
+
+        <!-- RWANDA -->
+        <div class="trip-card">
+            <h3>Volcanoes NP 🇷🇼</h3>
+            <p>Gorilla trekking in Virunga mountains.</p>
+            <a href="#booking" class="book-btn">Book Now</a>
+        </div>
+
+        <div class="trip-card">
+            <h3>Akagera NP 🇷🇼</h3>
+            <p>Big five safari in Rwanda.</p>
+            <a href="#booking" class="book-btn">Book Now</a>
         </div>
 
     </div>
 </section>
 
-<!-- ===== BOOKING SECTION ===== -->
-<section id="booking">
-    <h2>Book Your Trip</h2>
+<!-- ================= BOOKING ================= -->
+<section id="booking" class="booking-section">
 
-    <form class="booking-form">
+    <h2 class="booking-title">Book Your Safari</h2>
 
-        <input type="text" placeholder="Full Name" required>
-        <input type="email" placeholder="Email Address" required>
-        <input type="tel" placeholder="Phone Number" required>
+    <p class="booking-text">
+        Fill in your details and we will contact you.
+    </p>
 
-        <select>
-            <option>Select Trip</option>
-            <option>Murchison Falls Safari</option>
-            <option>Kidepo Valley Adventure</option>
-            <option>Kibale Forest Tour</option>
-            <option>Queen Elizabeth Park</option>
-        </select>
+    <form id="bookingForm">
+        <div class="row">
+            <input type="text" placeholder="Full Name">
+            <input type="email" placeholder="Email">
+        </div>
 
-        <input type="date" required>
-        <textarea rows="4" placeholder="Additional Notes"></textarea>
+        <div class="row">
+            <input type="text" placeholder="Phone">
+            <input type="text" placeholder="Country">
+        </div>
 
-        <button type="submit">Submit Booking</button>
-
+        <button type="submit" class="book-btn">Book Now</button>
     </form>
+
 </section>
 
 </body>
