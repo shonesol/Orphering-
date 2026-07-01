@@ -9,524 +9,334 @@
 
 <style>
 
-/* ================= THEME COLORS =================
-BLUE   : #1e88e5
-ORANGE : #ff8f00
-GOLD   : #d4af37
-DARK   : #1b1b1b
-BEIGE  : #fff8e6
-================================================== */
-
+/* ===== BASE ===== */
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
 }
 
 body{
-    background:#fff8e6;
-    color:#1b1b1b;
+background:#fff8e6;
+color:#1b1b1b;
 }
 
-/* ================= HEADER ================= */
+/* ===== HEADER ===== */
 header{
-    background:linear-gradient(90deg,#1e88e5,#ff8f00);
-    color:white;
-    padding:20px;
-    text-align:center;
-    position:sticky;
-    top:0;
-    z-index:1000;
+background:linear-gradient(90deg,#1e88e5,#ff8f00);
+color:white;
+padding:20px;
+text-align:center;
+position:sticky;
+top:0;
+z-index:1000;
 }
 
-/* MENU */
-.menu-container{
-    position:relative;
-    margin-top:10px;
+/* ===== HERO SLIDER ===== */
+.hero-slider{
+position:relative;
+height:80vh;
+overflow:hidden;
 }
 
-.menu-btn{
-    background:#d4af37;
-    border:none;
-    padding:10px 18px;
-    font-weight:800;
-    border-radius:6px;
-    cursor:pointer;
-    color:#1b1b1b;
+.slide{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+opacity:0;
+transition:opacity 1s ease-in-out;
 }
 
-.menu{
-    display:none;
-    position:absolute;
-    right:0;
-    top:50px;
-    background:white;
-    width:260px;
-    border-radius:12px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
-    overflow:hidden;
-    z-index:999;
+.slide h2{
+font-size:40px;
+background:rgba(0,0,0,0.4);
+padding:15px 25px;
+border-radius:10px;
 }
 
-.menu a{
-    display:block;
-    padding:12px;
-    text-decoration:none;
-    color:#1b1b1b;
-    border-bottom:1px solid #eee;
+.slide.active{
+opacity:1;
 }
 
-.menu a:hover{
-    background:#fff8e6;
-}
-
-/* ================= HERO ================= */
-.hero{
-    height:80vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    color:white;
-    background:
-    linear-gradient(rgba(30,136,229,0.5),rgba(255,143,0,0.6)),
-    url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee') center/cover no-repeat;
-}
-
-.hero h2{
-    font-size:48px;
-}
-
-/* ================= SECTION ================= */
+/* ===== SECTION ===== */
 section{
-    padding:60px 20px;
+padding:60px 20px;
 }
 
 .title{
-    text-align:center;
-    font-size:32px;
-    font-weight:900;
-    margin-bottom:30px;
-    color:#ff8f00;
+text-align:center;
+color:#ff8f00;
+font-size:32px;
+margin-bottom:20px;
 }
 
-/* ================= CARDS ================= */
+/* ===== GRID ===== */
 .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-    max-width:1100px;
-    margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+max-width:1100px;
+margin:auto;
 }
 
 .card{
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 10px 20px rgba(0,0,0,0.1);
-    border-left:6px solid #d4af37;
+background:white;
+padding:20px;
+border-radius:10px;
+border-left:5px solid #d4af37;
+box-shadow:0 10px 20px rgba(0,0,0,.1);
 }
 
-/* ================= SLIDER ================= */
-.slider-container{
-    max-width:800px;
-    margin:auto;
-    overflow:hidden;
-}
-
-.slider{
-    display:flex;
-    transition:transform 0.6s ease-in-out;
-}
-
-.slide-card{
-    min-width:100%;
-    background:white;
-    padding:30px;
-    border-radius:12px;
-    text-align:center;
-    box-shadow:0 10px 20px rgba(0,0,0,0.1);
-    border-top:6px solid #1e88e5;
-}
-
-/* ================= FORM ================= */
+/* ===== FORM ===== */
 form{
-    max-width:600px;
-    margin:auto;
-    background:white;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 10px 20px rgba(0,0,0,0.1);
+max-width:600px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 10px 20px rgba(0,0,0,.1);
 }
 
-input,textarea,select{
-    width:100%;
-    padding:10px;
-    margin-top:10px;
-    border-radius:6px;
-    border:1px solid #ddd;
+input,select,textarea{
+width:100%;
+padding:10px;
+margin-top:10px;
+border:1px solid #ddd;
+border-radius:6px;
 }
 
 button{
-    margin-top:10px;
-    width:100%;
-    padding:12px;
-    background:linear-gradient(90deg,#1e88e5,#ff8f00);
-    color:white;
-    border:none;
-    cursor:pointer;
-    font-weight:800;
-    border-radius:6px;
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:6px;
+font-weight:800;
+color:white;
+background:linear-gradient(90deg,#1e88e5,#ff8f00);
+cursor:pointer;
 }
 
-/* ================= FOOTER ================= */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html, body{
-    margin:0;
-    padding:0;
-    width:100%;
-    overflow-x:hidden;
-}
-
-footer{
-    background:#1b1b1b;
-    color:#fff;
-    width:100vw;
-    margin:0;
-    padding:50px 20px;
-    position:relative;
-    left:50%;
-    right:50%;
-    margin-left:-50vw;
-    margin-right:-50vw;
-}
-
-.footer-grid{
-    max-width:1200px;
-    margin:0 auto;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:25px;
-}
-
-.payments img{
-    width:45px;
-    margin-right:10px;
-    margin-top:10px;
-}
-
-/* LINKS */
-a{
-    color:#1e88e5;
-}
-    /* SOCIAL MEDIA SECTION */
-
-/* ================= SOCIAL MEDIA SECTION ================= */
-
+/* ===== SOCIAL ===== */
 .social-section{
-    width:100vw;
-    padding:50px 15px;
-    background:linear-gradient(135deg,#003B8E,#F59E0B,#FFD700);
-    text-align:center;
-
-    /* forces full screen edge-to-edge */
-    position:relative;
-    left:50%;
-    right:50%;
-    margin-left:-50vw;
-    margin-right:-50vw;
-}
-
-.social-container{
-    max-width:900px;
-    margin:auto;
-}
-
-.social-container h2{
-    color:#FFD700;
-    font-size:28px;
-    margin-bottom:10px;
-    text-transform:uppercase;
-    letter-spacing:1px;
-}
-
-.social-container p{
-    color:#fff;
-    font-size:14px;
-    line-height:1.6;
-    max-width:650px;
-    margin:0 auto 25px;
-}
-
-.social-icons{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
+padding:50px;
+text-align:center;
+background:linear-gradient(135deg,#1e88e5,#ff8f00,#d4af37);
+color:white;
 }
 
 .social-icons a{
-    width:120px;
-    padding:12px;
-    text-decoration:none;
-    border-radius:12px;
-    color:white;
-    font-size:14px;
-    font-weight:bold;
-    transition:.3s;
-    box-shadow:0 6px 15px rgba(0,0,0,.2);
+display:inline-block;
+margin:10px;
+padding:10px 15px;
+border-radius:8px;
+color:white;
+text-decoration:none;
 }
 
-.social-icons i{
-    display:block;
-    font-size:24px;
-    margin-bottom:6px;
+.facebook{background:#1e88e5}
+.instagram{background:#ff8f00}
+.whatsapp{background:#d4af37}
+.youtube{background:#1e88e5}
+.tiktok{background:#ff8f00}
+
+/* ===== FOOTER ===== */
+footer{
+background:#1b1b1b;
+color:white;
+padding:40px;
+text-align:center;
 }
 
-.social-icons a:hover{
-    transform:translateY(-5px) scale(1.03);
-}
-
-/* brand colors */
-.facebook{ background:#0d6efd; }
-.instagram{
-    background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
-}
-.whatsapp{ background:#25D366; }
-.youtube{ background:#ff0000; }
-.tiktok{ background:#111827; }
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:768px){
-
-    .social-icons a{
-        width:100px;
-        font-size:12px;
-        padding:10px;
-    }
-
-    .social-icons i{
-        font-size:20px;
-    }
-
-    .social-container h2{
-        font-size:22px;
-    }
-}
-    .footer-menu h3{
-    color: gold;
-    margin-bottom: 15px;
-    font-size: 24px;
-}
-
-.footer-menu a{
-    display: block;      /* Places each link on its own line */
-    color: white;
-    text-decoration: none;
-    margin: 10px 0;
-    transition: 0.3s;
-}
-
-.footer-menu a:hover{
-    color: orange;
-    padding-left: 8px;
-}
-    .booking-section{
-    padding:80px 20px;
-    background:#fff8e6;
-}
-
-.booking-title{
-    text-align:center;
-    color:#ff8f00;
-    font-size:40px;
-    margin-bottom:15px;
-}
-
-.booking-text{
-    max-width:850px;
-    margin:auto;
-    text-align:center;
-    line-height:1.8;
-    margin-bottom:40px;
-}
-
-#bookingForm{
-    max-width:900px;
-    margin:auto;
-    background:#fff;
-    padding:35px;
-    border-radius:15px;
-    box-shadow:0 15px 35px rgba(0,0,0,.15);
-}
-
-.row{
-    display:flex;
-    gap:20px;
-    margin-bottom:18px;
-}
-
-.row input,
-.row select{
-    flex:1;
-}
-
-#bookingForm input,
-#bookingForm select,
-#bookingForm textarea{
-    width:100%;
-    padding:15px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    font-size:16px;
-    margin-bottom:18px;
-}
-
-#bookingForm input:focus,
-#bookingForm select:focus,
-#bookingForm textarea:focus{
-    outline:none;
-    border:2px solid #1e88e5;
-}
-
-.book-btn{
-    width:100%;
-    padding:16px;
-    font-size:18px;
-    font-weight:bold;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    color:#fff;
-    background:linear-gradient(90deg,#1e88e5,#ff8f00);
-    transition:.4s;
-}
-
-.book-btn:hover{
-    transform:scale(1.02);
-}
-
-@media(max-width:768px){
-
-.row{
-    flex-direction:column;
-}
-
-.booking-title{
-    font-size:30px;
-}
-
-#bookingForm{
-    padding:20px;
-}
-
-}
 </style>
 </head>
+
 <body>
+
 <!-- HEADER -->
 <header>
-    <h1>TUJJE SAFARIS </h1>
-
-    <div class="menu-container">
-        <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
-
-        <div id="menu" class="menu">
-                  <a href="services.html">Services</a>
-             <a href="lodge.html">lodges & park</a>
-            <a href="trips.html">Featured Trips</a>
-            <a href="destination.html">Destinations</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="about.html">About Us</a>
-            <a href="terms.html">Terms & Conditions</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="#contact">Contact Us</a>
-            <a href="mailto:info@tujjesafaris.com">Email Us</a>
-        </div>
-    </div>
+<h1>TUJJE SAFARIS</h1>
 </header>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero-slider">
+
+  <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee');">
     <h2>Discover Africa in Luxury Style</h2>
+  </div>
+
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1548013146-72479768bada');">
+    <h2>Wildlife Adventures Await You</h2>
+  </div>
+
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1523805009345-7448845a9e53');">
+    <h2>Experience The Big Five Safaris</h2>
+  </div>
+
 </section>
 
 <!-- PACKAGES -->
 <section>
-    <h2 class="title">Tujje Safari Packages</h2>
+<h2 class="title">Safari Packages</h2>
 
-    <div class="grid">
-        <div class="card">Gorilla Trekking 🦍</div>
-        <div class="card">Masai Mara Safari 🐘</div>
-        <div class="card">Serengeti Migration 🦓</div>
-        <div class="card">Rwenzori Hiking 🏔️</div>
-    </div>
-</section>
-                
-
-<!-- Font Awesome -->
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<!-- FOOTER -->
-<footer>
-    <div class="footer-grid">
-
-        <div>
-            <h3>Contact us</h3>
-            <br>
-            <p>We are here to help you plan your dream safari adventure in Uganda and East Africa, our friendly team is just a call or message away.</p>
-            <br>
-            <p>Kampala & Jinja, Uganda</p>
-            <p>📞 +256 702 094 292</p>
-             <p>📞 +256-701-939-235</p>
-             <p>📞 +256-774-674-861</p>
-            <p>📧 info@tujjesafaris.com</p>
-        </div>
-<div class="footer-menu">
-    <h3>Our Menu</h3>
-
-    <a href="services.html">Services</a>
-    <a href="lodge.html">Lodges & Parks</a>
-    <a href="trips.html">Featured Trips</a>
-    <a href="destination.html">Destinations</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="about.html">About Us</a>
-    <a href="terms.html">Terms & Conditions</a>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="#contact">Contact Us</a>
+<div class="grid">
+<div class="card">Gorilla Trekking 🦍</div>
+<div class="card">Masai Mara Safari 🐘</div>
+<div class="card">Serengeti Migration 🦓</div>
+<div class="card">Rwenzori Hiking 🏔️</div>
 </div>
-              <div class="payments">
-            <h3>Payment Methods</h3>
-            <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png">
-            <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png">
-            <img src="https://cdn-icons-png.flaticon.com/512/196/196561.png">
-        </div>
+</section>
 
-    </div>
+<!-- BOOKING -->
+<section>
+<h2 class="title">Book Your Safari</h2>
+
+<form id="bookingForm">
+
+<input id="name" placeholder="Full Name" required>
+<input id="email" placeholder="Email" required>
+<input id="phone" placeholder="Phone" required>
+<input id="country" placeholder="Country" required>
+
+<select id="destination" required>
+<option>Uganda</option>
+<option>Kenya</option>
+<option>Tanzania</option>
+</select>
+
+<select id="package" required>
+<option>Gorilla Trekking</option>
+<option>Wildlife Safari</option>
+<option>Luxury Safari</option>
+<option>Honeymoon Safari</option>
+</select>
+
+<input id="date" type="date" required>
+
+<textarea id="message" placeholder="Message"></textarea>
+
+<button type="submit">Book Now</button>
+
+</form>
+</section>
+
+<!-- SOCIAL -->
+<section class="social-section">
+<h2>Connect With Us</h2>
+
+<div class="social-icons">
+<a class="facebook">Facebook</a>
+<a class="instagram">Instagram</a>
+<a class="whatsapp">WhatsApp</a>
+<a class="youtube">YouTube</a>
+<a class="tiktok">TikTok</a>
+</div>
+</section>
+
+<footer>
+<p>© 2026 Tujje Safaris</p>
 </footer>
 
+<!-- SLIDER -->
 <script>
-function toggleMenu(){
-    const menu=document.getElementById("menu");
-    menu.style.display=menu.style.display==="block"?"none":"block";
-}
+let slides=document.querySelectorAll(".slide");
+let i=0;
 
-document.addEventListener("click",(e)=>{
-    const menu=document.getElementById("menu");
-    const btn=document.querySelector(".menu-btn");
-    if(!menu.contains(e.target)&&!btn.contains(e.target)){
-        menu.style.display="none";
-    }
+setInterval(()=>{
+slides[i].classList.remove("active");
+i=(i+1)%slides.length;
+slides[i].classList.add("active");
+},4000);
+</script>
+
+<!-- EMAILJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+emailjs.init("JS9FCzRaz44ibCjcz");
+
+document.getElementById("bookingForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+const btn=this.querySelector("button");
+btn.disabled=true;
+btn.innerHTML="Sending...";
+
+const data={
+to_email:"tujjesafaris759@gmail.com",
+name:document.getElementById("name").value,
+email:document.getElementById("email").value,
+phone:document.getElementById("phone").value,
+country:document.getElementById("country").value,
+destination:document.getElementById("destination").value,
+package:document.getElementById("package").value,
+date:document.getElementById("date").value,
+message:document.getElementById("message").value
+};
+
+emailjs.send("service_mun08xi","template_j2s60y8",data)
+.then(()=>{
+alert("Booking sent successfully to Tujje Safaris!");
+this.reset();
+window.open("https://wa.me/256702094292","_blank");
+})
+.catch(err=>{
+console.error(err);
+alert("Failed to send booking.");
+})
+.finally(()=>{
+btn.disabled=false;
+btn.innerHTML="Book Now";
 });
 
+});
+</script>
 
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyA8d6BCwS5JKXwFUVcJy80hw3jMf5XeYWs",
+authDomain: "tujjesafaris-2c572.firebaseapp.com",
+projectId: "tujjesafaris-2c572",
+storageBucket: "tujjesafaris-2c572.firebasestorage.app",
+messagingSenderId: "819647557828",
+appId: "1:819647557828:web:ff4d3935c878c5c1075991",
+measurementId: "G-K89RQPQHLH"
+};
+
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+
+document.getElementById("bookingForm").addEventListener("submit",async(e)=>{
+e.preventDefault();
+
+await addDoc(collection(db,"bookings"),{
+name:document.getElementById("name").value,
+email:document.getElementById("email").value,
+phone:document.getElementById("phone").value,
+country:document.getElementById("country").value,
+destination:document.getElementById("destination").value,
+package:document.getElementById("package").value,
+date:document.getElementById("date").value,
+message:document.getElementById("message").value,
+status:"Pending",
+createdAt:serverTimestamp()
+});
+
+});
+</script>
 
 </body>
 </html>
