@@ -33,65 +33,7 @@ header{
     z-index:1000;
 }
 
-/* MENU */
-.menu-container{
-    position:relative;
-    margin-top:10px;
-}
-
-.menu-btn{
-    background:#d4af37;
-    border:none;
-    padding:10px 18px;
-    font-weight:800;
-    border-radius:6px;
-    cursor:pointer;
-    color:#1b1b1b;
-}
-
-.menu{
-    display:none;
-    position:absolute;
-    right:0;
-    top:50px;
-    background:white;
-    width:260px;
-    border-radius:12px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
-    overflow:hidden;
-    z-index:999;
-}
-
-.menu a{
-    display:block;
-    padding:12px;
-    text-decoration:none;
-    color:#1b1b1b;
-    border-bottom:1px solid #eee;
-}
-
-.menu a:hover{
-    background:#fff8e6;
-}
-
-/* HERO */
-.hero{
-    height:80vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    color:white;
-    background:
-    linear-gradient(rgba(30,136,229,0.5),rgba(255,143,0,0.6)),
-    url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee') center/cover no-repeat;
-}
-
-.hero h2{
-    font-size:48px;
-}
-
-/* SECTIONS */
+/* GRID */
 section{
     padding:60px 20px;
 }
@@ -104,7 +46,7 @@ section{
     color:#ff8f00;
 }
 
-/* PACKAGES */
+/* CARDS */
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -137,14 +79,25 @@ section{
 
 .trip-card{
     background:white;
-    padding:20px;
     border-radius:12px;
+    overflow:hidden;
     box-shadow:0 10px 20px rgba(0,0,0,0.1);
     transition:0.3s;
 }
 
 .trip-card:hover{
     transform:translateY(-5px);
+}
+
+/* IMAGE STYLE */
+.trip-card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+.trip-content{
+    padding:15px;
 }
 
 .trip-card h3{
@@ -214,32 +167,6 @@ input,select,textarea{
     border-radius:8px;
 }
 
-/* FOOTER (kept minimal) */
-footer{
-    background:#1b1b1b;
-    color:#fff;
-    padding:40px 20px;
-}
-
-/* SOCIAL */
-.social-section{
-    width:100%;
-    padding:50px 15px;
-    background:linear-gradient(135deg,#1e88e5,#ff8f00,#d4af37);
-    text-align:center;
-    color:white;
-}
-
-.social-icons a{
-    display:inline-block;
-    margin:10px;
-    padding:10px 15px;
-    background:#1b1b1b;
-    color:white;
-    border-radius:8px;
-    text-decoration:none;
-}
-
 </style>
 </head>
 
@@ -250,117 +177,131 @@ footer{
 </header>
 
 <!-- HERO -->
-<section class="hero">
-    <h2>Discover Africa in Luxury Style</h2>
-</section>
-
-<!-- PACKAGES -->
 <section>
-    <h2 class="title">Tujje Safari Packages</h2>
-
-    <div class="grid">
-        <div class="card">Gorilla Trekking 🦍</div>
-        <div class="card">Masai Mara Safari 🐘</div>
-        <div class="card">Serengeti Migration 🦓</div>
-        <div class="card">Rwenzori Hiking 🏔️</div>
-    </div>
-</section>
-
-<!-- ================= FEATURED TRIPS ================= -->
-<section class="featured-trips">
     <h2 class="title">Featured Trips</h2>
 
     <div class="trip-grid">
 
         <!-- UGANDA -->
         <div class="trip-card">
-            <h3>Queen Elizabeth NP 🇺🇬</h3>
-            <p>Tree climbing lions & Kazinga Channel cruise.</p>
-            <a href="#bookingForm" class="book-btn">Book Now</a>
+            <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df7" alt="">
+            <div class="trip-content">
+                <h3>Queen Elizabeth NP 🇺🇬</h3>
+                <p>Tree climbing lions & Kazinga Channel cruise.</p>
+                <a href="#booking" class="book-btn">Book Now</a>
+            </div>
         </div>
 
         <div class="trip-card">
-            <h3>Murchison Falls NP 🇺🇬</h3>
-            <p>Powerful waterfall & Nile boat safari.</p>
-            <a href="#bookingForm" class="book-btn">Book Now</a>
+            <img src="https://images.unsplash.com/photo-1581852017103-68ac65514cf7" alt="">
+            <div class="trip-content">
+                <h3>Murchison Falls NP 🇺🇬</h3>
+                <p>Powerful waterfall & Nile boat safari.</p>
+                <a href="#booking" class="book-btn">Book Now</a>
+            </div>
         </div>
 
         <div class="trip-card">
-            <h3>Kidepo Valley NP 🇺🇬</h3>
-            <p>Remote wilderness safari experience.</p>
-            <a href="#bookingForm" class="book-btn">Book Now</a>
+            <img src="https://images.unsplash.com/photo-1549366021-9f761d040a94" alt="">
+            <div class="trip-content">
+                <h3>Kidepo Valley NP 🇺🇬</h3>
+                <p>Remote wilderness safari experience.</p>
+                <a href="#booking" class="book-btn">Book Now</a>
+            </div>
         </div>
 
         <div class="trip-card">
-            <h3>Kibale Forest NP 🇺🇬</h3>
-            <p>Chimpanzee trekking adventure.</p>
-            <a href="#bookingForm" class="book-btn">Book Now</a>
+            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429" alt="">
+            <div class="trip-content">
+                <h3>Kibale Forest NP 🇺🇬</h3>
+                <p>Chimpanzee trekking adventure.</p>
+                <a href="#booking" class="book-btn">Book Now</a>
+            </div>
         </div>
 
         <!-- KENYA -->
         <div class="trip-card">
-            <h3>Maasai Mara 🇰🇪</h3>
-            <p>Great migration & big five safari.</p>
-            <a href="#bookingForm" class="book-btn">Book Now</a>
+            <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7" alt="">
+            <div class="trip-content">
+                <h3>Maasai Mara 🇰🇪</h3>
+                <p>Great migration & big five safari.</p>
+                <a href="#booking" class="book-btn">Book Now</a>
+            </div>
         </div>
 
         <div class="trip-card">
-            <h3>Amboseli NP 🇰🇪</h3>
-            <p>Elephants with Kilimanjaro views.</p>
-            <a href="#bookingForm" class="book-btn">Book Now</a>
-        </div>
-
-        <div class="trip-card">
-            <h3>Tsavo East 🇰🇪</h3>
-            <p>Red elephants & wild landscapes.</p>
-            <a href="#bookingForm" class="book-btn">Book Now</a>
-        </div>
-
-        <div class="trip-card">
-            <h3>Lake Nakuru 🇰🇪</h3>
-            <p>Flamingos & rhino sanctuary.</p>
-            <a href="#bookingForm" class="book-btn">Book Now</a>
+            <img src="https://images.unsplash.com/photo-1564760055775-d63b17a55c44" alt="">
+            <div class="trip-content">
+                <h3>Amboseli NP 🇰🇪</h3>
+                <p>Elephants with Kilimanjaro views.</p>
+                <a href="#booking" class="book-btn">Book Now</a>
+            </div>
         </div>
 
         <!-- TANZANIA -->
         <div class="trip-card">
-            <h3>Serengeti 🇹🇿</h3>
-            <p>Endless plains & wildlife migration.</p>
-            <a href="#bookingForm" class="book-btn">Book Now</a>
+            <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2" alt="">
+            <div class="trip-content">
+                <h3>Serengeti 🇹🇿</h3>
+                <p>Endless plains & wildlife migration.</p>
+                <a href="#booking" class="book-btn">Book Now</a>
+            </div>
         </div>
 
         <div class="trip-card">
-            <h3>Ngorongoro Crater 🇹🇿</h3>
-            <p>World natural wildlife wonder.</p>
-            <a href="#bookingForm" class="book-btn">Book Now</a>
-        </div>
-
-        <div class="trip-card">
-            <h3>Tarangire 🇹🇿</h3>
-            <p>Elephants & baobab trees.</p>
-            <a href="#bookingForm" class="book-btn">Book Now</a>
-        </div>
-
-        <div class="trip-card">
-            <h3>Lake Manyara 🇹🇿</h3>
-            <p>Tree climbing lions & birds.</p>
-            <a href="#bookingForm" class="book-btn">Book Now</a>
+            <img src="https://images.unsplash.com/photo-1583267746897-2cf415887172" alt="">
+            <div class="trip-content">
+                <h3>Ngorongoro Crater 🇹🇿</h3>
+                <p>World natural wildlife wonder.</p>
+                <a href="#booking" class="book-btn">Book Now</a>
+            </div>
         </div>
 
         <!-- RWANDA -->
         <div class="trip-card">
-            <h3>Volcanoes NP 🇷🇼</h3>
-            <p>Gorilla trekking in Virunga mountains.</p>
-            <a href="#bookingForm" class="book-btn">Book Now</a>
+            <img src="https://images.unsplash.com/photo-1578926288207-3233f2f8c7f4" alt="">
+            <div class="trip-content">
+                <h3>Volcanoes NP 🇷🇼</h3>
+                <p>Gorilla trekking in Virunga mountains.</p>
+                <a href="#booking" class="book-btn">Book Now</a>
+            </div>
         </div>
 
         <div class="trip-card">
-            <h3>Akagera NP 🇷🇼</h3>
-            <p>Big five safari in Rwanda.</p>
-            <a href="#bookingForm" class="book-btn">Book Now</a>
+            <img src="https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8" alt="">
+            <div class="trip-content">
+                <h3>Akagera NP 🇷🇼</h3>
+                <p>Big five safari in Rwanda.</p>
+                <a href="#booking" class="book-btn">Book Now</a>
+            </div>
         </div>
 
     </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking" class="booking-section">
+
+    <h2 class="booking-title">Book Your Safari</h2>
+
+    <p class="booking-text">
+        Complete the form below and we will contact you shortly.
+    </p>
+
+    <form id="bookingForm">
+        <div class="row">
+            <input type="text" placeholder="Full Name">
+            <input type="email" placeholder="Email">
+        </div>
+
+        <div class="row">
+            <input type="text" placeholder="Phone">
+            <input type="text" placeholder="Country">
+        </div>
+
+        <button type="submit" class="book-btn">Book Now</button>
+    </form>
+
 </section>
 
 </body>
