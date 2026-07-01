@@ -421,8 +421,7 @@ let index = 0;
 
 async function loadReviews(){
 
-const q = query(collection(db,"reviews"), orderBy("createdAt","desc"));
-const snap = await getDocs(q);
+const snap = await getDocs(collection(db,"reviews"));
 
 reviews = [];
 
@@ -430,38 +429,20 @@ snap.forEach(doc=>{
 reviews.push(doc.data());
 });
 
+// sort manually (SAFE FIX)
+reviews.sort((a,b)=>{
+return (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0);
+});
+
+index = 0;
+
 if(reviews.length > 0){
 showReview();
+} else {
+document.getElementById("reviewBox").innerHTML =
+"<p>No reviews yet</p>";
 }
 }
-
-function showReview(){
-
-const box = document.getElementById("reviewBox");
-
-const r = reviews[index];
-
-box.innerHTML = `
-<h3>${r.name}</h3>
-<p>${"⭐".repeat(r.rating)}</p>
-<p>"${r.text}"</p>
-`;
-
-index = (index + 1) % reviews.length;
-}
-
-/* auto slide */
-setInterval(()=>{
-if(reviews.length > 0){
-showReview();
-}
-}, 4000);
-
-loadReviews();
-
-
-
-
 /* OPTIONAL: SAVE BOOKINGS ALSO IN FIREBASE HERE (SAFE BACKUP) */
 document.getElementById("bookingForm").addEventListener("submit", async (e)=>{
 e.preventDefault();
