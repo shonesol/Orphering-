@@ -3,131 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Featured Trips - Tujje Safaris</title>
+<title>Tujje Safaris - Featured Trips</title>
 
 <style>
-body{
-margin:0;
-font-family:Arial;
-background:#0b1b3a;
-color:white;
+
+/* ===== GENERAL STYLE ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
 }
 
-/* HEADER */
-header{
-background:linear-gradient(90deg,#0b1b3a,#ff8c00,#d4af37);
-padding:20px;
-text-align:center;
-font-size:26px;
-font-weight:bold;
+/* ===== HEADER ===== */
+header {
+    background: linear-gradient(135deg, #003B8E, #F59E0B, #FFD700);
+    color: white;
+    text-align: center;
+    padding: 20px;
 }
 
-.back-home{
-display:inline-block;
-margin-top:10px;
-padding:10px 15px;
-background:#ff8c00;
-color:white;
-text-decoration:none;
-border-radius:8px;
+/* ===== FEATURED TRIPS ===== */
+.featured-trips {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.featured-trips h2 {
+    color: #003B8E;
+    margin-bottom: 30px;
 }
 
 /* SLIDER */
-.slider-container{
-position:relative;
-width:92%;
-margin:30px auto;
-overflow:hidden;
-border-radius:15px;
-border:2px solid #ff8c00;
+.slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px;
+    scroll-snap-type: x mandatory;
 }
 
-.slides{
-display:flex;
-transition:transform 0.6s ease-in-out;
+.trip-card {
+    min-width: 300px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    scroll-snap-align: start;
+    overflow: hidden;
+    padding-bottom: 15px;
 }
 
-.slide{
-min-width:100%;
-display:flex;
-flex-wrap:wrap;
-align-items:center;
-background:#112a5c;
-padding:20px;
-gap:20px;
-box-sizing:border-box;
+.trip-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
 }
 
-/* IMAGE */
-.slide img{
-width:45%;
-border-radius:12px;
-border:3px solid #d4af37;
-object-fit:cover;
+.trip-card h3 {
+    color: #F59E0B;
+    margin: 10px 0;
 }
 
-/* CONTENT */
-.content{
-width:50%;
-}
-
-.content h2{
-color:#ff8c00;
-}
-
-.content p{
-line-height:1.6;
-font-size:15px;
+.trip-card p {
+    padding: 0 10px;
+    font-size: 14px;
 }
 
 /* BOOK BUTTON */
-.book-btn{
-display:inline-block;
-margin-top:15px;
-padding:12px 18px;
-background:linear-gradient(90deg,#ff8c00,#d4af37);
-color:white;
-text-decoration:none;
-font-weight:bold;
-border-radius:8px;
-transition:0.3s;
+.book-now-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: #003B8E;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.3s;
 }
 
-.book-btn:hover{
-transform:scale(1.05);
-background:#ff8c00;
+.book-now-btn:hover {
+    background: #F59E0B;
+    color: black;
 }
 
-/* NAV BUTTONS */
-.btn{
-position:absolute;
-top:50%;
-transform:translateY(-50%);
-background:#d4af37;
-border:none;
-padding:10px 15px;
-cursor:pointer;
-font-size:18px;
-border-radius:50%;
+/* ===== BOOKING SECTION ===== */
+#booking {
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #FFD700, #F59E0B, #003B8E);
+    color: white;
+    text-align: center;
 }
 
-.prev{left:10px;}
-.next{right:10px;}
-
-.btn:hover{
-background:#ff8c00;
+#booking h2 {
+    margin-bottom: 20px;
 }
 
-/* RESPONSIVE */
-@media(max-width:768px){
-.slide{
-flex-direction:column;
-text-align:center;
+/* FORM */
+.booking-form {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    color: black;
 }
 
-.slide img,.content{
-width:100%;
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
+
+.booking-form button {
+    width: 100%;
+    padding: 10px;
+    background: #003B8E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.booking-form button:hover {
+    background: #F59E0B;
+    color: black;
 }
 
 </style>
@@ -136,137 +138,72 @@ width:100%;
 <body>
 
 <header>
-Featured Trips - Tujje Safaris
-<br>
-<a class="back-home" href="index.html">⬅ Back Home</a>
+    <h1>Tujje Safaris</h1>
+    <p>Explore East Africa in Style</p>
 </header>
 
-<div class="slider-container">
+<!-- ===== FEATURED TRIPS ===== -->
+<section class="featured-trips">
+    <h2>Featured Trips</h2>
 
-<div class="slides" id="slides">
+    <div class="slider">
 
-<!-- 1 -->
-<div class="slide">
-<img src="https://source.unsplash.com/800x600/?uganda,gorilla" alt="">
-<div class="content">
-<h2>Uganda Gorilla Trek</h2>
-<p>Experience mountain gorillas in Bwindi Impenetrable Forest.</p>
-<a class="book-btn" href="#book now">Book Now</a>
-</div>
-</div>
+        <div class="trip-card">
+            <img src="https://source.unsplash.com/300x200/?safari,uganda" alt="">
+            <h3>Murchison Falls Safari</h3>
+            <p>Experience powerful waterfalls and wild animals in Uganda’s biggest park.</p>
+            <a href="#booking" class="book-now-btn">Book Now</a>
+        </div>
 
-<!-- 2 -->
-<div class="slide">
-<img src="https://source.unsplash.com/800x600/?murchison,waterfall" alt="">
-<div class="content">
-<h2>Murchison Falls Safari</h2>
-<p>Witness the Nile forcing through a narrow gorge.</p>
-<a class="book-btn" href="#book now">Book Now</a>
-</div>
-</div>
+        <div class="trip-card">
+            <img src="https://source.unsplash.com/300x200/?giraffe,africa" alt="">
+            <h3>Kidepo Valley Adventure</h3>
+            <p>Remote wilderness, lions, and breathtaking landscapes.</p>
+            <a href="#booking" class="book-now-btn">Book Now</a>
+        </div>
 
-<!-- 3 -->
-<div class="slide">
-<img src="https://source.unsplash.com/800x600/?queen,uganda,safari" alt="">
-<div class="content">
-<h2>Queen Elizabeth Safari</h2>
-<p>Tree climbing lions and Kazinga Channel cruises.</p>
-<a class="book-btn" href="#book now">Book Now</a>
-</div>
-</div>
+        <div class="trip-card">
+            <img src="https://source.unsplash.com/300x200/?chimpanzee,forest" alt="">
+            <h3>Kibale Forest Tour</h3>
+            <p>Meet chimpanzees in their natural rainforest home.</p>
+            <a href="#booking" class="book-now-btn">Book Now</a>
+        </div>
 
-<!-- 4 -->
-<div class="slide">
-<img src="https://source.unsplash.com/800x600/?kidepo,africa" alt="">
-<div class="content">
-<h2>Kidepo Valley Safari</h2>
-<p>Remote wilderness and authentic African culture.</p>
-<a class="book-btn" href="#book now">Book Now</a>
-</div>
-</div>
+        <div class="trip-card">
+            <img src="https://source.unsplash.com/300x200/?lion,safari" alt="">
+            <h3>Queen Elizabeth Park</h3>
+            <p>Tree climbing lions and scenic boat cruises.</p>
+            <a href="#booking" class="book-now-btn">Book Now</a>
+        </div>
 
-<!-- 5 -->
-<div class="slide">
-<img src="https://source.unsplash.com/800x600/?maasai,mara" alt="">
-<div class="content">
-<h2>Maasai Mara Safari</h2>
-<p>Great Migration and Big Five experience.</p>
-<a class="book-btn" href="#book now">Book Now</a>
-</div>
-</div>
+    </div>
+</section>
 
-<!-- 6 -->
-<div class="slide">
-<img src="https://source.unsplash.com/800x600/?amboseli,elephant" alt="">
-<div class="content">
-<h2>Amboseli Safari</h2>
-<p>Elephants with Mount Kilimanjaro views.</p>
-<a class="book-btn" href="#book now">Book Now</a>
-</div>
-</div>
+<!-- ===== BOOKING SECTION ===== -->
+<section id="booking">
+    <h2>Book Your Trip</h2>
 
-<!-- 7 -->
-<div class="slide">
-<img src="https://source.unsplash.com/800x600/?serengeti" alt="">
-<div class="content">
-<h2>Serengeti Safari</h2>
-<p>Endless plains and wildlife migration.</p>
-<a class="book-btn" href="#book now">Book Now</a>
-</div>
-</div>
+    <form class="booking-form">
 
-<!-- 8 -->
-<div class="slide">
-<img src="https://source.unsplash.com/800x600/?ngorongoro" alt="">
-<div class="content">
-<h2>Ngorongoro Crater</h2>
-<p>Big Five inside a natural volcanic bowl.</p>
-<a class="book-btn" href="#book now">Book Now</a>
-</div>
-</div>
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <input type="tel" placeholder="Phone Number" required>
 
-<!-- 9 -->
-<div class="slide">
-<img src="https://source.unsplash.com/800x600/?rwanda,gorilla" alt="">
-<div class="content">
-<h2>Rwanda Gorilla Trek</h2>
-<p>Volcanoes National Park gorilla experience.</p>
-<a class="book-btn" href="#book now">Book Now</a>
-</div>
-</div>
+        <select>
+            <option>Select Trip</option>
+            <option>Murchison Falls Safari</option>
+            <option>Kidepo Valley Adventure</option>
+            <option>Kibale Forest Tour</option>
+            <option>Queen Elizabeth Park</option>
+        </select>
 
-<!-- 10 -->
-<div class="slide">
-<img src="https://source.unsplash.com/800x600/?africa,safari" alt="">
-<div class="content">
-<h2>East Africa Combo</h2>
-<p>Uganda, Kenya, Tanzania & Rwanda adventure.</p>
-<a class="book-btn" href="#book now">Book Now</a>
-</div>
-</div>
+        <input type="date" required>
+        <textarea rows="4" placeholder="Additional Notes"></textarea>
 
-</div>
+        <button type="submit">Submit Booking</button>
 
-<button class="btn prev" onclick="moveSlide(-1)">❮</button>
-<button class="btn next" onclick="moveSlide(1)">❯</button>
-
-</div>
-
-<!-- BOOKING SECTION TARGET -->
-<div id="book now"></div>
-
-<script>
-let index = 0;
-const slides = document.getElementById("slides");
-const total = document.querySelectorAll(".slide").length;
-
-function moveSlide(step){
-index = (index + step + total) % total;
-slides.style.transform = `translateX(${-index * 100}%)`;
-}
-
-setInterval(()=>moveSlide(1),5000);
-</script>
+    </form>
+</section>
 
 </body>
 </html>
