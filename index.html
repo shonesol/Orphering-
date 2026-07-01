@@ -427,32 +427,55 @@ alert("❌ Failed to submit review.");
 let reviews = [];
 let index = 0;
 
-async function loadReviews(){
+async function loadReviews() {
 
-const snap = await getDocs(collection(db,"reviews"));
+    const snap = await getDocs(collection(db, "reviews"));
 
-reviews = [];
+    reviews = [];
 
-snap.forEach(doc=>{
-reviews.push(doc.data());
-});
+    snap.forEach(doc => {
+        reviews.push(doc.data());
+    });
 
-// sort manually (SAFE FIX)
-reviews.sort((a,b)=>{
-return (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0);
-});
+    reviews.sort((a, b) => {
+        return (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0);
+    });
 
-index = 0;
+    index = 0;
 
-if(reviews.length > 0){
-showReview();
-} else {
-document.getElementById("reviewBox").innerHTML =
-"<p>No reviews yet</p>";
+    if (reviews.length > 0) {
+        showReview();
+    } else {
+        document.getElementById("reviewBox").innerHTML =
+            "<p>No reviews yet</p>";
+    }
 }
+
+/* =========================
+   SHOW REVIEW
+========================= */
+
+function showReview() {
+
+    const review = reviews[index];
+
+    document.getElementById("reviewBox").innerHTML = `
+        <h3>${review.name}</h3>
+        <p>${"⭐".repeat(Number(review.rating))}</p>
+        <p>${review.text}</p>
+    `;
+
+    index = (index + 1) % reviews.length;
 }
-/* OPTIONAL: SAVE BOOKINGS ALSO IN FIREBASE HERE (SAFE BACKUP) */
-document.getElementById("bookingForm").addEventListener("submit", async (e)=>{
+
+setInterval(() => {
+    if (reviews.length > 0) {
+        showReview();
+    }
+}, 5000);
+
+/* OPTIONAL: SAVE BOOKINGS ALSO IN FIREBASE HERE */
+document.getElementById("bookingForm").addEventListener("submit", async (e) => {
 e.preventDefault();
 
 try{
