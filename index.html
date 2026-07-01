@@ -546,137 +546,176 @@ a{
     </form>
 
 </section>
-    <!-- EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "",
-  authDomain: "tujjesafaris-d0093.firebaseapp.com",
-  projectId: "tujjesafaris-d0093",
-  storageBucket: "tujjesafaris-d0093.firebasestorage.app",
-  messagingSenderId: "173870238852",
-  appId: "1:173870238852:web:8dc8494ac415d935c886d1",
-  measurementId: "G-0NLYCRKD48"
+  authDomain: "brendava-tours-and-travel.firebaseapp.com",
+  projectId: "brendava-tours-and-travel",
+  storageBucket: "brendava-tours-and-travel.firebasestorage.app",
+  messagingSenderId: "732703885570",
+  appId: "1:732703885570:web:3011a3989d5fe36eb69a1b",
+  measurementId: "G-ZC356HMW9C"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-emailjs.init("YOUR_PUBLIC_KEY");
+// =========================
+// SUBMIT REVIEW
+// =========================
+window.submitReview = async function () {
 
-document.getElementById("bookingForm").addEventListener("submit", async function (e) {
-    e.preventDefault();
+  const name = document.getElementById("reviewName").value;
+  const rating = parseInt(document.getElementById("reviewRating").value || 0);
+  const comment = document.getElementById("reviewComment").value;
 
-    const booking = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        country: document.getElementById("country").value,
-        destination: document.getElementById("destination").value,
-        package: document.getElementById("package").value,
-        date: document.getElementById("date").value,
-        days: document.getElementById("days").value,
-        adults: document.getElementById("adults").value,
-        children: document.getElementById("children").value,
-        accommodation: document.getElementById("accommodation").value,
-        message: document.getElementById("message").value,
-        createdAt: new Date()
-    };
+  if (!name || !comment || rating === 0) {
+    alert("Please fill all fields");
+    return;
+  }
 
-    try {
-        await addDoc(collection(db, "bookings"), booking);
-
-        await emailjs.send("service_mun08xi", "template_j2s60y8", booking);
-
-        alert("✅ Booking sent successfully!");
-
-        // clear form
-        document.getElementById("bookingForm").reset();
-
-        const whatsapp =
-            "https://wa.me/256702094292?text=" +
-            encodeURIComponent(
-`Hello Tujje Safaris,
-
-Booking sent successfully:
-
-Name: ${booking.name}
-Country: ${booking.country}
-Destination: ${booking.destination}
-Package: ${booking.package}
-Date: ${booking.date}
-Email: ${booking.email}
-Phone: ${booking.phone}`
-            );
-
-        window.location.href = whatsapp;
-
-    } catch (error) {
-        console.error(error);
-        alert("❌ Booking failed. Please try again.");
-    }
-});
-</script>
-    <script>
-let reviews = [];
-
-function submitReview() {
-    try {
-        const name = document.getElementById("rname").value;
-        const text = document.getElementById("rtext").value;
-        const rating = document.getElementById("rrating").value;
-
-        if (!name || !text) {
-            alert("❌ Please fill in your name and review.");
-            return;
-        }
-
-        reviews.push({ name, text, rating });
-
-        document.getElementById("rname").value = "";
-        document.getElementById("rtext").value = "";
-        document.getElementById("rrating").value = "5";
-
-        render();
-
-        alert("✅ Review sent successfully!");
-
-    } catch (error) {
-        console.error(error);
-        alert("❌ Review failed. Try again.");
-    }
-}
-
-function render() {
-    const slider = document.getElementById("slider");
-    slider.innerHTML = "";
-
-    reviews.forEach(r => {
-        const div = document.createElement("div");
-        div.className = "slide-card";
-        div.innerHTML = `
-            <h3>${r.name}</h3>
-            <p>${"⭐".repeat(r.rating)}</p>
-            <p>${r.text}</p>
-        `;
-        slider.appendChild(div);
+  try {
+    await addDoc(collection(db, "reviews"), {
+      name,
+      rating,
+      comment,
+      createdAt: Date.now()
     });
 
-    let i = 0;
+    document.getElementById("reviewName").value = "";
+    document.getElementById("reviewComment").value = "";
+    document.getElementById("reviewRating").value = "";
 
-    setInterval(() => {
-        if (reviews.length === 0) return;
+    loadReviews();
 
-        i++;
-        if (i >= reviews.length) i = 0;
+  } catch (err) {
+    console.error("Error adding review:", err);
+    alert("Failed to submit review");
+  }
+};
 
-        slider.style.transform = `translateX(-${i * 100}%)`;
-    }, 3000);
+// =========================
+// LOAD REVIEWS
+// =========================
+async function loadReviews() {
+
+  const reviewsContainer = document.getElementById("reviewsContainer");
+
+  try {
+    const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+    const snapshot = await getDocs(q);
+
+    const reviews = [];
+
+    snapshot.forEach((doc) => {
+      reviews.push(doc.data());
+    });
+
+    if (reviews.length === 0) {
+      reviewsContainer.innerHTML = "<p>No reviews yet.</p>";
+      return;
+    }
+
+    let current = 0;
+
+    function showReview() {
+      const review = reviews[current];
+
+      reviewsContainer.style.opacity = "0";
+
+      setTimeout(() => {
+        const stars = "⭐".repeat(Number(review.rating) || 0);
+
+        reviewsContainer.innerHTML = `
+          <div class="review-card">
+            <h4>${review.name}</h4>
+            <p>${stars}</p>
+            <p>${review.comment}</p>
+          </div>
+        `;
+
+        reviewsContainer.style.opacity = "1";
+
+        current = (current + 1) % reviews.length;
+
+      }, 400);
+    }
+
+    showReview();
+    setInterval(showReview, 5000);
+
+  } catch (err) {
+    console.error("Error loading reviews:", err);
+    reviewsContainer.innerHTML = "<p>Failed to load reviews.</p>";
+  }
 }
+
+loadReviews();
+
+</script>
+<!-- EMAILJS (UNCHANGED LOGIC) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+emailjs.init({
+    publicKey: "pA1qeAlZDgevk8-It"
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const form = document.getElementById("bookingForm");
+
+    form.addEventListener("submit", function(e){
+
+        e.preventDefault();
+
+        const btn = this.querySelector("button");
+        btn.disabled = true;
+        btn.innerHTML = "Sending...";
+
+        emailjs.sendForm(
+            "service_1hlp5ii",
+            "template_vs01t7d",
+            this
+        )
+        .then(() => {
+
+            alert("Booking sent successfully!");
+
+            form.reset();
+
+            window.open(
+                "https://wa.me/+256789336441?text=New Safari Booking received from the website.",
+                "_blank"
+            );
+
+        })
+        .catch((error)=>{
+
+            console.log(error);
+            alert("Failed to send booking.");
+
+        })
+        .finally(()=>{
+
+            btn.disabled = false;
+            btn.innerHTML = "Send Booking";
+
+        });
+
+    });
+
+});
 </script>
 <!-- REVIEWS -->
 <section style="background:#fff1d6;">
