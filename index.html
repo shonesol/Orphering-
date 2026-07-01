@@ -549,105 +549,133 @@ a{
     <!-- EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<!-- Firebase -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-    getFirestore,
-    collection,
-    addDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-/* Replace these with YOUR Firebase config */
 const firebaseConfig = {
-
-  apiKey: "AIzaSyB-iwFkFo7KJKA7QAAGCZji3ZJKs2qnygU",
-
+  apiKey: "",
   authDomain: "tujjesafaris-d0093.firebaseapp.com",
-
   projectId: "tujjesafaris-d0093",
-
   storageBucket: "tujjesafaris-d0093.firebasestorage.app",
-
   messagingSenderId: "173870238852",
-
   appId: "1:173870238852:web:8dc8494ac415d935c886d1",
-
   measurementId: "G-0NLYCRKD48"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-/* Replace with YOUR EmailJS Public Key */
 emailjs.init("YOUR_PUBLIC_KEY");
 
-document.getElementById("bookingForm").addEventListener("submit", async function(e){
-
+document.getElementById("bookingForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const booking = {
-        name: name.value,
-        email: email.value,
-        phone: phone.value,
-        country: country.value,
-        destination: destination.value,
-        package: package.value,
-        date: date.value,
-        days: days.value,
-        adults: adults.value,
-        children: children.value,
-        accommodation: accommodation.value,
-        message: message.value,
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        country: document.getElementById("country").value,
+        destination: document.getElementById("destination").value,
+        package: document.getElementById("package").value,
+        date: document.getElementById("date").value,
+        days: document.getElementById("days").value,
+        adults: document.getElementById("adults").value,
+        children: document.getElementById("children").value,
+        accommodation: document.getElementById("accommodation").value,
+        message: document.getElementById("message").value,
         createdAt: new Date()
     };
 
     try {
+        await addDoc(collection(db, "bookings"), booking);
 
-    // Save booking to Firebase
-    await addDoc(collection(db, "bookings"), booking);
+        await emailjs.send("service_mun08xi", "template_j2s60y8", booking);
 
-    // Send booking email
-    await emailjs.send(
-        "service_mun08xi",
-        "template_j2s60y8",
-        booking
-    );
+        alert("✅ Booking sent successfully!");
 
-    // Success message
-    alert("✅ Booking sent successfully! Thank you for choosing Tujje Safaris. We will contact you shortly.");
+        // clear form
+        document.getElementById("bookingForm").reset();
 
-    // Clear the form
-    document.getElementById("bookingForm").reset();
-
-    // WhatsApp message
-    const whatsapp =
-        "https://wa.me/256702094292?text=" +
-        encodeURIComponent(
+        const whatsapp =
+            "https://wa.me/256702094292?text=" +
+            encodeURIComponent(
 `Hello Tujje Safaris,
 
-I have successfully submitted my safari booking.
+Booking sent successfully:
 
 Name: ${booking.name}
 Country: ${booking.country}
 Destination: ${booking.destination}
 Package: ${booking.package}
-Travel Date: ${booking.date}
+Date: ${booking.date}
 Email: ${booking.email}
-Phone: ${booking.phone}
+Phone: ${booking.phone}`
+            );
 
-Please confirm my booking. Thank you.`
-        );
+        window.location.href = whatsapp;
 
-    // Redirect to WhatsApp
-    window.location.href = whatsapp;
+    } catch (error) {
+        console.error(error);
+        alert("❌ Booking failed. Please try again.");
+    }
+});
+</script>
+    <script>
+let reviews = [];
 
-} catch (error) {
+function submitReview() {
+    try {
+        const name = document.getElementById("rname").value;
+        const text = document.getElementById("rtext").value;
+        const rating = document.getElementById("rrating").value;
 
-    console.error(error);
+        if (!name || !text) {
+            alert("❌ Please fill in your name and review.");
+            return;
+        }
 
-    alert("❌ Booking failed. Please check your internet connection and try again.");
+        reviews.push({ name, text, rating });
 
+        document.getElementById("rname").value = "";
+        document.getElementById("rtext").value = "";
+        document.getElementById("rrating").value = "5";
+
+        render();
+
+        alert("✅ Review sent successfully!");
+
+    } catch (error) {
+        console.error(error);
+        alert("❌ Review failed. Try again.");
+    }
+}
+
+function render() {
+    const slider = document.getElementById("slider");
+    slider.innerHTML = "";
+
+    reviews.forEach(r => {
+        const div = document.createElement("div");
+        div.className = "slide-card";
+        div.innerHTML = `
+            <h3>${r.name}</h3>
+            <p>${"⭐".repeat(r.rating)}</p>
+            <p>${r.text}</p>
+        `;
+        slider.appendChild(div);
+    });
+
+    let i = 0;
+
+    setInterval(() => {
+        if (reviews.length === 0) return;
+
+        i++;
+        if (i >= reviews.length) i = 0;
+
+        slider.style.transform = `translateX(-${i * 100}%)`;
+    }, 3000);
 }
 </script>
 <!-- REVIEWS -->
