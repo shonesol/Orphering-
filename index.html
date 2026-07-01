@@ -412,8 +412,8 @@ document.getElementById("reviewForm").reset();
 loadReviews();
 
 } catch (err) {
-console.error(err);
-alert("❌ Failed to submit review.");
+    console.error("FULL FIREBASE ERROR:", err);
+    alert(err.code + " : " + err.message);
 }
 };
 
