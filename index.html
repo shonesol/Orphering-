@@ -601,8 +601,8 @@ document.getElementById("bookingForm").addEventListener("submit", async function
 
         // Send Email
         await emailjs.send(
-            "service_s2ij3mf",
-            "YOUR_TEMPLATE_ID",
+            "service_mun08xi",
+            "template_j2s60y8",
             booking
         );
 
@@ -621,7 +621,7 @@ Destination: ${booking.destination}
 Package: ${booking.package}
 Travel Date: ${booking.date}
 Email: ${booking.email}
-Phone: ${booking.phone}`
+Phone: ${booking.phone}
         );
 
         window.location.href = whatsapp;
