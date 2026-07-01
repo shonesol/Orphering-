@@ -595,26 +595,31 @@ document.getElementById("bookingForm").addEventListener("submit", async function
         createdAt: new Date()
     };
 
-    try{
+    try {
 
-        // Save to Firebase
-        await addDoc(collection(db,"bookings"), booking);
+    // Save booking to Firebase
+    await addDoc(collection(db, "bookings"), booking);
 
-        // Send Email
-        await emailjs.send(
-            "service_mun08xi",
-            "template_j2s60y8",
-            booking
-        );
+    // Send booking email
+    await emailjs.send(
+        "service_mun08xi",
+        "template_j2s60y8",
+        booking
+    );
 
-        alert("Booking successfully sent!");
+    // Success message
+    alert("✅ Booking sent successfully! Thank you for choosing Tujje Safaris. We will contact you shortly.");
 
-        const whatsapp =
+    // Clear the form
+    document.getElementById("bookingForm").reset();
+
+    // WhatsApp message
+    const whatsapp =
         "https://wa.me/256702094292?text=" +
         encodeURIComponent(
 `Hello Tujje Safaris,
 
-I have successfully submitted a booking.
+I have successfully submitted my safari booking.
 
 Name: ${booking.name}
 Country: ${booking.country}
@@ -623,19 +628,20 @@ Package: ${booking.package}
 Travel Date: ${booking.date}
 Email: ${booking.email}
 Phone: ${booking.phone}
+
+Please confirm my booking. Thank you.`
         );
 
-        window.location.href = whatsapp;
+    // Redirect to WhatsApp
+    window.location.href = whatsapp;
 
-    }catch(error){
+} catch (error) {
 
-        alert("Booking failed. Please try again.");
+    console.error(error);
 
-        console.error(error);
+    alert("❌ Booking failed. Please check your internet connection and try again.");
 
-    }
-
-});
+}
 </script>
 <!-- REVIEWS -->
 <section style="background:#fff1d6;">
