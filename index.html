@@ -203,23 +203,32 @@ button{
     box-sizing:border-box;
 }
 
-body{
+html, body{
     margin:0;
     padding:0;
+    width:100%;
+    overflow-x:hidden;
 }
 
 footer{
-    width:100%;
-    background:#1b1b1b; /* Your existing color */
-    color:white;        /* Your existing color */
+    background:#1b1b1b;
+    color:#fff;
+    width:100vw;
+    margin:0;
     padding:50px 20px;
+    position:relative;
+    left:50%;
+    right:50%;
+    margin-left:-50vw;
+    margin-right:-50vw;
 }
 
 .footer-grid{
+    max-width:1200px;
+    margin:0 auto;
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-    width:100%;
+    gap:25px;
 }
 
 .payments img{
