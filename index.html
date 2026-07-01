@@ -126,28 +126,31 @@ background:linear-gradient(90deg,#1e88e5,#ff8f00);
 cursor:pointer;
 }
 
-/* ===== SOCIAL ===== */
-.social-section{
-padding:50px;
-text-align:center;
-background:linear-gradient(135deg,#1e88e5,#ff8f00,#d4af37);
-color:white;
+/* ===== SOCIAL ===== *//* Social */
+
+.social{
+    text-align:center;
+    margin:40px 0 20px;
 }
 
-.social-icons a{
-display:inline-block;
-margin:10px;
-padding:10px 15px;
-border-radius:8px;
-color:white;
-text-decoration:none;
+.social a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:48px;
+    height:48px;
+    margin:8px;
+    border-radius:50%;
+    background:var(--blue);
+    color:white;
+    text-decoration:none;
+    transition:.3s;
 }
 
-.facebook{background:#1e88e5}
-.instagram{background:#ff8f00}
-.whatsapp{background:#25D366}
-.youtube{background:#1e88e5}
-.tiktok{background: #000000}
+.social a:hover{
+    background:var(--orange);
+    transform:translateY(-5px);
+}
 
 /* ===== FOOTER ===== */
 footer{
@@ -586,12 +589,18 @@ footer{
 <section class="social-section">
 <h2>Connect With Us</h2>
 
-<div class="social-icons">
-<a class="https://www.facebook.com/profile.php?id=61554350095901&mibextid=eQY6cl">Facebook</a>
-<a class="https://www.instagram.com/tujje_safaris_?igsh=MXJoczN4eXZrM3UzNg%3D%3D&utm_source=qr">Instagram</a>
-<a class="https://wa.me/256702094292">WhatsApp</a>
-<a class="youtube">YouTube</a>
-<a class="https://www.tiktok.com/@tujje.safaris?_t=8kRsJIGa1RO&_r=1">TikTok</a>
+<div class="social">
+
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+
+<a href="#"><i class="fab fa-instagram"></i></a>
+
+<a href="#"><i class="fab fa-x-twitter"></i></a>
+
+<a href="#"><i class="fab fa-youtube"></i></a>
+
+<a href="#"><i class="fab fa-whatsapp"></i></a>
+
 </div>
 </section>
 
