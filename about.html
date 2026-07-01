@@ -1,1 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>About Us | Tujje Safaris</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f8f9fb;
+color:#333;
+line-height:1.7;
+}
+
+/* COLORS
+
+Blue #1565C0
+Orange #F57C00
+Gold #FFD700
+
+*/
+
+/* HERO */
+
+.hero{
+height:70vh;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1600&q=80");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero h1{
+color:white;
+font-size:60px;
+margin-bottom:20px;
+}
+
+.hero p{
+color:white;
+font-size:22px;
+max-width:800px;
+margin:auto;
+}
+
+/* SECTION */
+
+section{
+padding:80px 10%;
+}
+
+.section-title{
+text-align:center;
+font-size:40px;
+color:#1565C0;
+margin-bottom:20px;
+}
+
+.line{
+width:100px;
+height:5px;
+background:#F57C00;
+margin:auto;
+margin-bottom:50px;
+border-radius:30px;
+}
+
+/* STORY */
+
+.story{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center;
+}
+
+.story img{
+width:100%;
+border-radius:20px;
+box-shadow:0 15px 30px rgba(0,0,0,.2);
+}
+
+.story h2{
+color:#1565C0;
+margin-bottom:20px;
+}
+
+.story p{
+margin-bottom:20px;
+font-size:17px;
+}
+
+/* MISSION */
+
+.mission{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.card{
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+transition:.4s;
+border-top:6px solid #F57C00;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card h3{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+/* WHY */
+
+.why{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.box{
+background:white;
+padding:30px;
+text-align:center;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+transition:.4s;
+}
+
+.box:hover{
+background:#1565C0;
+color:white;
+transform:translateY(-10px);
+}
+
+.box h3{
+margin:15px 0;
+color:#F57C00;
+}
+
+.box:hover h3{
+color:#FFD700;
+}
+
+/* SERVICES */
+
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.service{
+background:#fff;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+}
+
+.service h3{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+/* VALUES */
+
+.values{
+background:#1565C0;
+color:white;
+}
+
+.values h2{
+color:white;
+}
+
+.value-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.value{
+background:rgba(255,255,255,.1);
+padding:30px;
+border-radius:20px;
+}
+
+.value h3{
+color:#FFD700;
+margin-bottom:15px;
+}
+
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+text-align:center;
+}
+
+.stat{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 20px rgba(0,0,0,.1);
+}
+
+.stat h2{
+font-size:45px;
+color:#F57C00;
+}
+
+/* CTA */
+
+.cta{
+background:linear-gradient(45deg,#1565C0,#F57C00);
+color:white;
+text-align:center;
+padding:80px 20px;
+}
+
+.cta h2{
+font-size:45px;
+margin-bottom:20px;
+}
+
+.cta p{
+max-width:700px;
+margin:auto;
+margin-bottom:30px;
+}
+
+.btn{
+display:inline-block;
+padding:15px 40px;
+background:#FFD700;
+color:#222;
+text-decoration:none;
+font-weight:bold;
+border-radius:50px;
+transition:.4s;
+}
+
+.btn:hover{
+background:white;
+}
+
+/* HOME BUTTON */
+
+.home-btn{
+margin-top:20px;
+display:inline-block;
+padding:15px 35px;
+background:#1565C0;
+color:white;
+text-decoration:none;
+border-radius:40px;
+font-weight:bold;
+}
+
+.home-btn:hover{
+background:#F57C00;
+}
+
+/* FOOTER */
+
+footer{
+background:#111;
+color:#ddd;
+text-align:center;
+padding:30px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.hero h1{
+font-size:42px;
+}
+
+.story{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div>
+
+<h1>About Tujje Safaris</h1>
+
+<p>
+Discover Uganda and East Africa through unforgettable adventures, wildlife encounters, cultural experiences, and personalized travel services.
+</p>
+
+</div>
+
+</section>
+
+<!-- STORY -->
+
+<section>
+
+<h1 class="section-title">Who We Are</h1>
+
+<div class="line"></div>
+
+<div class="story">
+
+<div>
+
+<img src="https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=900&q=80">
+
+</div>
+
+<div>
+
+<h2>Welcome to Tujje Safaris</h2>
+
+<p>
+
+Tujje Safaris is a proudly Ugandan tour and travel company dedicated to creating unforgettable journeys across Uganda and East Africa. Whether you dream of tracking mountain gorillas, witnessing the Big Five, exploring breathtaking waterfalls, or experiencing vibrant local cultures, we make every adventure extraordinary.
+
+</p>
+
+<p>
+
+Our experienced team believes that every traveler deserves a personalized experience. We carefully design each safari to match your interests, schedule, and budget while ensuring comfort, safety, and unforgettable memories.
+
+</p>
+
+<p>
+
+From airport transfers to luxury safaris, family holidays, honeymoon packages, cultural tours, and wildlife expeditions, Tujje Safaris is your trusted travel companion.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- MISSION -->
+
+<section>
+
+<h1 class="section-title">Mission & Vision</h1>
+
+<div class="line"></div>
+
+<div class="mission">
+
+<div class="card">
+
+<h3>Our Mission</h3>
+
+<p>
+
+To provide world-class travel experiences through exceptional customer service, responsible tourism, and unforgettable adventures that connect people with Africa's natural beauty.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Our Vision</h3>
+
+<p>
+
+To become East Africa's most trusted and innovative safari company, inspiring travelers from around the world to explore Uganda sustainably.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- WHY -->
+
+<section>
+
+<h1 class="section-title">Why Choose Us?</h1>
+
+<div class="line"></div>
+
+<div class="why">
+
+<div class="box">
+
+<h3>Professional Guides</h3>
+
+<p>Friendly, knowledgeable and experienced local guides.</p>
+
+</div>
+
+<div class="box">
+
+<h3>Affordable Packages</h3>
+
+<p>Great adventures that fit every budget.</p>
+
+</div>
+
+<div class="box">
+
+<h3>Comfortable Transport</h3>
+
+<p>Reliable safari vehicles designed for every terrain.</p>
+
+</div>
+
+<div class="box">
+
+<h3>24/7 Support</h3>
+
+<p>We're always available throughout your journey.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SERVICES -->
+
+<section>
+
+<h1 class="section-title">Our Services</h1>
+
+<div class="line"></div>
+
+<div class="services">
+
+<div class="service">
+
+<h3>Wildlife Safaris</h3>
+
+<p>Explore Uganda's national parks and witness amazing wildlife.</p>
+
+</div>
+
+<div class="service">
+
+<h3>Gorilla Trekking</h3>
+
+<p>Experience the world's famous mountain gorillas.</p>
+
+</div>
+
+<div class="service">
+
+<h3>Cultural Tours</h3>
+
+<p>Discover authentic African traditions and communities.</p>
+
+</div>
+
+<div class="service">
+
+<h3>Airport Transfers</h3>
+
+<p>Comfortable transportation to and from the airport.</p>
+
+</div>
+
+<div class="service">
+
+<h3>Hotel Booking</h3>
+
+<p>Luxury, mid-range and budget accommodation.</p>
+
+</div>
+
+<div class="service">
+
+<h3>Customized Tours</h3>
+
+<p>Create your own dream safari itinerary.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- VALUES -->
+
+<section class="values">
+
+<h1 class="section-title">Our Core Values</h1>
+
+<div class="line"></div>
+
+<div class="value-grid">
+
+<div class="value">
+
+<h3>Integrity</h3>
+
+<p>Honesty and transparency guide everything we do.</p>
+
+</div>
+
+<div class="value">
+
+<h3>Excellence</h3>
+
+<p>Delivering exceptional travel experiences every time.</p>
+
+</div>
+
+<div class="value">
+
+<h3>Sustainability</h3>
+
+<p>Supporting conservation and local communities.</p>
+
+</div>
+
+<div class="value">
+
+<h3>Passion</h3>
+
+<p>Sharing Africa's beauty with the world.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- STATS -->
+
+<section>
+
+<h1 class="section-title">Our Achievements</h1>
+
+<div class="line"></div>
+
+<div class="stats">
+
+<div class="stat">
+
+<h2>1000+</h2>
+
+<p>Happy Travelers</p>
+
+</div>
+
+<div class="stat">
+
+<h2>100+</h2>
+
+<p>Safari Packages</p>
+
+</div>
+
+<div class="stat">
+
+<h2>10+</h2>
+
+<p>Years of Experience</p>
+
+</div>
+
+<div class="stat">
+
+<h2>24/7</h2>
+
+<p>Customer Support</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta">
+
+<h2>Ready For Your Next Adventure?</h2>
+
+<p>
+
+Join thousands of travelers who have explored Uganda with Tujje Safaris. Let us help you create unforgettable memories.
+
+</p>
+
+<a href="booking.html" class="btn">Book Your Safari</a>
+
+<br><br>
+
+<a href="index.html" class="home-btn">← Back to Home</a>
+
+</section>
+
+<footer>
+
+© 2026 Tujje Safaris. All Rights Reserved.
+
+</footer>
+
+</body>
+</html>
