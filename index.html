@@ -397,7 +397,83 @@ a{
         <div class="card">Rwenzori Hiking 🏔️</div>
     </div>
 </section>
+                <!-- BOOKING SECTION -->
+<section id="booking" class="booking-section">
 
+    <h2 class="booking-title">Book Your Safari</h2>
+
+    <p class="booking-text">
+        Complete the form below and our safari consultants will contact you shortly
+        to confirm your booking and help you plan an unforgettable East African
+        adventure.
+    </p>
+
+    <form id="bookingForm">
+
+        <div class="row">
+            <input type="text" id="name" placeholder="Full Name" required>
+
+            <input type="email" id="email" placeholder="Email Address" required>
+        </div>
+
+        <div class="row">
+            <input type="tel" id="phone" placeholder="Phone / WhatsApp Number" required>
+
+            <input type="text" id="country" placeholder="Country" required>
+        </div>
+
+        <div class="row">
+            <select id="destination" required>
+                <option value="">Choose Destination</option>
+                <option>Uganda</option>
+                <option>Kenya</option>
+                <option>Tanzania</option>
+                <option>Rwanda</option>
+                <option>Burundi</option>
+            </select>
+
+            <select id="package" required>
+                <option value="">Safari Package</option>
+                <option>Gorilla Trekking</option>
+                <option>Wildlife Safari</option>
+                <option>Bird Watching</option>
+                <option>Honeymoon Safari</option>
+                <option>Family Safari</option>
+                <option>Luxury Safari</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <input type="date" id="date" required>
+
+            <input type="number" id="days" placeholder="Number of Days" required>
+        </div>
+
+        <div class="row">
+            <input type="number" id="adults" placeholder="Adults" required>
+
+            <input type="number" id="children" placeholder="Children">
+        </div>
+
+        <select id="accommodation">
+            <option value="">Accommodation Preference</option>
+            <option>Budget</option>
+            <option>Mid-range</option>
+            <option>Luxury</option>
+        </select>
+
+        <textarea
+            id="message"
+            rows="6"
+            placeholder="Tell us about your dream safari, special requests, airport pickup, dietary requirements, etc."></textarea>
+
+        <button type="submit" class="book-btn">
+            Book Now
+        </button>
+
+    </form>
+
+</section>
 <!-- REVIEWS -->
 <section style="background:#fff1d6;">
     <h2 class="title">What Our Clients Say</h2>
