@@ -561,11 +561,11 @@ import {
 /* Replace these with YOUR Firebase config */
 const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    authDomain: "tujjesafaris-2c572.firebaseapp.com",
+    projectId: "tujjesafaris-2c572",
+    storageBucket: "tujjesafaris-2c572.firebasestorage.app",
+    messagingSenderId: "819647557828",
+    appId: "1:819647557828:web:ff4d3935c878c5c1075991"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -601,7 +601,7 @@ document.getElementById("bookingForm").addEventListener("submit", async function
 
         // Send Email
         await emailjs.send(
-            "YOUR_SERVICE_ID",
+            "service_s2ij3mf",
             "YOUR_TEMPLATE_ID",
             booking
         );
