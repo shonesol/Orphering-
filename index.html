@@ -197,9 +197,21 @@ button{
 }
 
 /* ================= FOOTER ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:0;
+}
+
 footer{
-    background:#1b1b1b;
-    color:white;
+    width:100%;
+    background:#1b1b1b; /* Your existing color */
+    color:white;        /* Your existing color */
     padding:50px 20px;
 }
 
@@ -207,6 +219,7 @@ footer{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
+    width:100%;
 }
 
 .payments img{
