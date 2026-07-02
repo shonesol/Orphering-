@@ -3,219 +3,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tujje Safaris Gallery</title>
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+<title>Tujje Safaris Pro System</title>
 
 <style>
 body{
-  font-family:Arial;
   margin:0;
-  background:#f4f4f4;
+  font-family:Arial;
+  background:#f5f0e6;
 }
 
 header{
-  background:linear-gradient(90deg,#1e88e5,#ff9800,gold);
+  background:#0b5ed7;
   color:white;
   padding:15px;
   text-align:center;
-  position:relative;
+  font-size:20px;
 }
 
-.back-btn{
-  position:absolute;
-  left:15px;
-  top:15px;
-  background:#ff9800;
+.hero{
+  background:linear-gradient(90deg,#f39c12,#0b5ed7,#d4af37);
   color:white;
-  padding:8px 12px;
-  border-radius:5px;
-  text-decoration:none;
+  text-align:center;
+  padding:30px;
 }
-
-.back-btn:hover{background:#1e88e5;}
-
-.container{
-  width:90%;
-  max-width:600px;
-  margin:20px auto;
-  background:white;
-  padding:20px;
-  border-radius:10px;
-  box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
-
-input,select{
-  width:100%;
-  padding:10px;
-  margin:10px 0;
-  border-radius:5px;
-  border:1px solid #ccc;
-}
-
-button{
-  width:100%;
-  padding:12px;
-  background:#1e88e5;
-  color:white;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-button:hover{background:#ff9800;}
 
 .gallery{
-  width:90%;
-  max-width:1000px;
-  margin:20px auto;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:10px;
+  padding:20px;
 }
 
 .card{
   background:white;
   border-radius:10px;
   overflow:hidden;
-  box-shadow:0 0 10px rgba(0,0,0,0.1);
-  border-top:4px solid gold;
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
 }
 
-.card img,
-.card video{
+.card img{
   width:100%;
+  height:200px;
+  object-fit:cover;
 }
 
-.card p{
-  text-align:center;
+.card-content{
   padding:10px;
-  margin:0;
-  color:#1e88e5;
-  font-weight:bold;
+}
+
+button{
+  padding:8px;
+  margin:5px;
+  cursor:pointer;
+}
+
+#adminPanel{
+  display:none;
+  padding:20px;
+  background:white;
+  margin:20px;
+  border-radius:10px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<a class="back-btn" href="index.html">⬅ Home</a>
-<h1>📸 Tujje Safaris Gallery</h1>
-</header>
+<header>🌍 Tujje Safaris Pro Gallery</header>
 
-<!-- UPLOAD -->
-<div class="container">
-<h2 style="color:#ff9800;">Upload Photo / Video</h2>
-
-<input type="file" id="file" accept="image/*,video/*">
-
-<select id="type">
-<option value="photo">📸 Photo</option>
-<option value="video">🎥 Video</option>
-</select>
-
-<button onclick="uploadFile()">Upload</button>
+<div class="hero">
+<h2>Cloudinary + Firebase System</h2>
 </div>
 
-<!-- GALLERY -->
 <div class="gallery" id="gallery"></div>
 
-<script>
+<!-- ADMIN -->
+<div id="adminPanel">
+<h3>Admin Upload</h3>
+<input type="file" id="file"><br><br>
+<select id="category">
+  <option value="safari">Safari</option>
+  <option value="wildlife">Wildlife</option>
+  <option value="hotel">Hotels</option>
+</select>
+<br><br>
+<button onclick="uploadImage()">Upload</button>
+<button onclick="logout()">Logout</button>
+</div>
 
-/* ================= FIREBASE (FROM YOUR PROJECT) ================= */
+<!-- LOGIN -->
+<div id="loginBox">
+<h3>Admin Login</h3>
+<input id="email" placeholder="Email"><br><br>
+<input id="password" type="password" placeholder="Password"><br><br>
+<button onclick="login()">Login</button>
+</div>
+
+<script type="module">
+
+// ===== FIREBASE IMPORTS =====
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { 
+  getAuth, 
+  signInWithEmailAndPassword, 
+  signOut, 
+  onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+import { 
+  getFirestore, 
+  collection, 
+  addDoc, 
+  getDocs, 
+  deleteDoc, 
+  doc 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// ===== YOUR FIREBASE CONFIG =====
 const firebaseConfig = {
   apiKey: "AIzaSyAUxwj4JVPWAz3oDjPTSaEUot49pHxmWQg",
   authDomain: "tujjesafari-dbda9.firebaseapp.com",
   projectId: "tujjesafari-dbda9",
   storageBucket: "tujjesafari-dbda9.appspot.com",
   messagingSenderId: "39777982092",
-  appId: "1:39777982092:web:bc488a73cf7bb637204da9",
-  measurementId: "G-2PP6P43TER"
+  appId: "1:39777982092:web:bc488a73cf7bb637204da9"
 };
 
-firebase.initializeApp(firebaseConfig);
+// ===== INIT FIREBASE =====
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-const db = firebase.firestore();
-const storage = firebase.storage();
+// ===== CLOUDINARY =====
+const CLOUD_NAME = "tujjesafaris";
+const UPLOAD_PRESET = "Unsigned";
 
-/* ================= UPLOAD ================= */
-async function uploadFile(){
+// ===== AUTH FUNCTIONS =====
+window.login = function(){
+  let email = document.getElementById("email").value;
+  let pass = document.getElementById("password").value;
 
-const file = document.getElementById("file").files[0];
-const type = document.getElementById("type").value;
-
-if(!file){
-alert("Select a file first");
-return;
+  signInWithEmailAndPassword(auth, email, pass)
+  .catch(err => alert(err.message));
 }
 
-const ref = storage.ref("gallery/" + Date.now() + "_" + file.name);
+window.logout = function(){
+  signOut(auth);
+}
 
-try{
-
-// upload file
-await ref.put(file);
-const url = await ref.getDownloadURL();
-
-// save metadata
-await db.collection("gallery").add({
-url,
-type,
-name:file.name,
-createdAt:new Date()
+// ===== AUTH STATE =====
+onAuthStateChanged(auth, user=>{
+  if(user){
+    document.getElementById("adminPanel").style.display="block";
+    document.getElementById("loginBox").style.display="none";
+  } else {
+    document.getElementById("adminPanel").style.display="none";
+    document.getElementById("loginBox").style.display="block";
+  }
 });
 
-alert("✅ Upload successful!");
-document.getElementById("file").value="";
+// ===== LOAD IMAGES =====
+async function loadImages(){
+  const snap = await getDocs(collection(db,"images"));
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML="";
 
-loadGallery();
+  snap.forEach(docu=>{
+    let data = docu.data();
 
-}catch(err){
-console.error(err);
-alert("❌ Upload failed");
+    let div = document.createElement("div");
+    div.className="card";
+
+    div.innerHTML=`
+      <img src="${data.url}">
+      <div class="card-content">
+        <b>${data.category}</b><br>
+        <button onclick="deleteImg('${docu.id}')">Delete</button>
+      </div>
+    `;
+
+    gallery.appendChild(div);
+  });
 }
-}
+loadImages();
 
-/* ================= LOAD GALLERY ================= */
-async function loadGallery(){
-
-const snap = await db.collection("gallery")
-.orderBy("createdAt","desc")
-.get();
-
-const gallery = document.getElementById("gallery");
-gallery.innerHTML="";
-
-snap.forEach(doc=>{
-const item = doc.data();
-
-const div = document.createElement("div");
-div.className="card";
-
-if(item.type==="photo"){
-div.innerHTML=`
-<img src="${item.url}">
-<p>📸 ${item.name}</p>
-`;
-}else{
-div.innerHTML=`
-<video controls>
-<source src="${item.url}">
-</video>
-<p>🎥 ${item.name}</p>
-`;
+// ===== DELETE IMAGE =====
+window.deleteImg = async function(id){
+  await deleteDoc(doc(db,"images",id));
+  loadImages();
 }
 
-gallery.appendChild(div);
-});
-}
+// ===== UPLOAD TO CLOUDINARY =====
+window.uploadImage = async function(){
+  let file = document.getElementById("file").files[0];
+  let category = document.getElementById("category").value;
 
-loadGallery();
+  if(!file) return alert("Select file");
+
+  let form = new FormData();
+  form.append("file",file);
+  form.append("upload_preset",UPLOAD_PRESET);
+  form.append("folder","tujje");
+
+  let res = await fetch(
+    `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+    { method:"POST", body:form }
+  );
+
+  let data = await res.json();
+
+  await addDoc(collection(db,"images"),{
+    url:data.secure_url,
+    category:category,
+    time:Date.now()
+  });
+
+  loadImages();
+  alert("Uploaded!");
+}
 
 </script>
 
