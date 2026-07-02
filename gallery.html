@@ -3,225 +3,270 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tujje Safaris Pro System</title>
+<title>Tujje Safari Gallery</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
 <style>
-body{
-  margin:0;
-  font-family:Arial;
-  background:#f5f0e6;
+:root{
+  --blue:#1565c0;
+  --orange:#ff9800;
+  --gold:#d4af37;
+  --dark:#0f172a;
 }
 
-header{
-  background:#0b5ed7;
-  color:white;
-  padding:15px;
-  text-align:center;
-  font-size:20px;
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
+body{background:var(--dark);color:white;}
+
+/* NAV */
+nav{
+  display:flex;
+  justify-content:space-between;
+  padding:15px 25px;
+  background:rgba(0,0,0,0.7);
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:1000;
+  backdrop-filter:blur(10px);
 }
 
+.logo{color:var(--gold);font-weight:800;font-size:20px;}
+
+.home-btn{
+  background:linear-gradient(45deg,var(--orange),var(--gold));
+  padding:8px 15px;
+  border-radius:20px;
+  color:black;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* HERO */
 .hero{
-  background:linear-gradient(90deg,#f39c12,#0b5ed7,#d4af37);
-  color:white;
+  height:100vh;
+  background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee') center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   text-align:center;
-  padding:30px;
+  position:relative;
 }
 
-.gallery{
+.hero::after{
+  content:"";
+  position:absolute;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.6);
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+}
+
+.hero h1{font-size:45px;color:var(--gold);}
+.hero p{color:#ddd;margin-top:10px;}
+
+/* SECTION TITLE */
+.section-title{
+  text-align:center;
+  margin:60px 0 20px;
+  color:var(--orange);
+  font-size:28px;
+}
+
+/* SWIPER */
+.swiper{
+  width:90%;
+}
+.swiper-slide img{
+  width:100%;
+  height:400px;
+  object-fit:cover;
+  border-radius:15px;
+  border:3px solid var(--gold);
+}
+
+/* GRID GALLERY */
+.grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:10px;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
   padding:20px;
 }
 
-.card{
-  background:white;
-  border-radius:10px;
-  overflow:hidden;
-  box-shadow:0 2px 8px rgba(0,0,0,0.2);
-}
-
-.card img{
+.grid img,.grid video{
   width:100%;
   height:200px;
   object-fit:cover;
+  border-radius:12px;
+  cursor:pointer;
+  border:2px solid var(--blue);
+  transition:0.3s;
 }
 
-.card-content{
-  padding:10px;
+.grid img:hover,.grid video:hover{
+  transform:scale(1.05);
 }
 
-button{
-  padding:8px;
-  margin:5px;
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+
+.modal img,.modal video{
+  max-width:90%;
+  max-height:80%;
+  border-radius:15px;
+}
+
+.close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:30px;
+  color:white;
   cursor:pointer;
 }
 
-#adminPanel{
-  display:none;
-  padding:20px;
-  background:white;
-  margin:20px;
-  border-radius:10px;
+.nav-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:40px;
+  color:white;
+  cursor:pointer;
+  user-select:none;
 }
+
+.prev{left:20px;}
+.next{right:20px;}
+
 </style>
 </head>
 
 <body>
 
-<header>Tujje Safaris Pro Gallery</header>
+<nav>
+  <div class="logo">TUJJE SAFARI</div>
+  <a href="index.html" class="home-btn">🏠 Home</a>
+</nav>
 
-<div class="hero">
-<h2> This id for authorized personel only </h2>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Explore Uganda With Tujje Safari</h1>
+    <p>Luxury safaris, wildlife, and unforgettable adventures</p>
+  </div>
+</section>
+
+<!-- SLIDER PHOTOS -->
+<h2 class="section-title">Featured Safari Photos</h2>
+
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1549366021-9f761d450615"></div>
+    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13"></div>
+    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2"></div>
+  </div>
 </div>
 
-<div class="gallery" id="gallery"></div>
+<!-- CLICKABLE PHOTOS -->
+<h2 class="section-title">Photo Gallery</h2>
 
-<!-- ADMIN -->
-<div id="adminPanel">
-<h3>Admin Upload</h3>
-<input type="file" id="file"><br><br>
-<select id="category">
-  <option value="safari">Safari</option>
-  <option value="wildlife">Wildlife</option>
-  <option value="hotel">Hotels</option>
-</select>
-<br><br>
-<button onclick="uploadImage()">Upload</button>
-<button onclick="logout()">Logout</button>
+<div class="grid">
+  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+  <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d">
+  <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2">
 </div>
 
-<!-- LOGIN -->
-<div id="loginBox">
-<h3>Admin Login</h3>
-<input id="email" placeholder="Email"><br><br>
-<input id="password" type="password" placeholder="Password"><br><br>
-<button onclick="login()">Login</button>
+<!-- VIDEO GALLERY -->
+<h2 class="section-title">Safari Videos</h2>
+
+<div class="grid">
+  <video src="your-video1.mp4"></video>
+  <video src="your-video2.mp4"></video>
 </div>
 
-<script type="module">
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <span class="close" onclick="closeModal()">×</span>
+  <span class="nav-btn prev" onclick="prev()">❮</span>
+  <span class="nav-btn next" onclick="next()">❯</span>
 
-// ===== FIREBASE IMPORTS =====
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { 
-  getAuth, 
-  signInWithEmailAndPassword, 
-  signOut, 
-  onAuthStateChanged 
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  <img id="modalImg">
+  <video id="modalVideo" controls style="display:none;"></video>
+</div>
 
-import { 
-  getFirestore, 
-  collection, 
-  addDoc, 
-  getDocs, 
-  deleteDoc, 
-  doc 
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-// ===== YOUR FIREBASE CONFIG =====
-const firebaseConfig = {
-  apiKey: "AIzaSyAUxwj4JVPWAz3oDjPTSaEUot49pHxmWQg",
-  authDomain: "tujjesafari-dbda9.firebaseapp.com",
-  projectId: "tujjesafari-dbda9",
-  storageBucket: "tujjesafari-dbda9.appspot.com",
-  messagingSenderId: "39777982092",
-  appId: "1:39777982092:web:bc488a73cf7bb637204da9"
-};
-
-// ===== INIT FIREBASE =====
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-// ===== CLOUDINARY =====
-const CLOUD_NAME = "tujjesafaris";
-const UPLOAD_PRESET = "Unsigned";
-
-// ===== AUTH FUNCTIONS =====
-window.login = function(){
-  let email = document.getElementById("email").value;
-  let pass = document.getElementById("password").value;
-
-  signInWithEmailAndPassword(auth, email, pass)
-  .catch(err => alert(err.message));
-}
-
-window.logout = function(){
-  signOut(auth);
-}
-
-// ===== AUTH STATE =====
-onAuthStateChanged(auth, user=>{
-  if(user){
-    document.getElementById("adminPanel").style.display="block";
-    document.getElementById("loginBox").style.display="none";
-  } else {
-    document.getElementById("adminPanel").style.display="none";
-    document.getElementById("loginBox").style.display="block";
-  }
+<script>
+let swiper = new Swiper(".mySwiper", {
+  loop:true,
+  autoplay:{delay:2500}
 });
 
-// ===== LOAD IMAGES =====
-async function loadImages(){
-  const snap = await getDocs(collection(db,"images"));
-  const gallery = document.getElementById("gallery");
-  gallery.innerHTML="";
+/* MODAL SYSTEM */
+let items = [];
+let index = 0;
 
-  snap.forEach(docu=>{
-    let data = docu.data();
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+const modalVideo = document.getElementById("modalVideo");
 
-    let div = document.createElement("div");
-    div.className="card";
+/* collect images + videos */
+document.querySelectorAll(".grid img, .grid video").forEach((el, i)=>{
+  items.push(el);
 
-    div.innerHTML=`
-      <img src="${data.url}">
-      <div class="card-content">
-        <b>${data.category}</b><br>
-        <button onclick="deleteImg('${docu.id}')">Delete</button>
-      </div>
-    `;
-
-    gallery.appendChild(div);
+  el.addEventListener("click", ()=>{
+    index = i;
+    openModal(el);
   });
-}
-loadImages();
+});
 
-// ===== DELETE IMAGE =====
-window.deleteImg = async function(id){
-  await deleteDoc(doc(db,"images",id));
-  loadImages();
-}
+function openModal(el){
+  modal.style.display="flex";
 
-// ===== UPLOAD TO CLOUDINARY =====
-window.uploadImage = async function(){
-  let file = document.getElementById("file").files[0];
-  let category = document.getElementById("category").value;
-
-  if(!file) return alert("Select file");
-
-  let form = new FormData();
-  form.append("file",file);
-  form.append("upload_preset",UPLOAD_PRESET);
-  form.append("folder","tujje");
-
-  let res = await fetch(
-    `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-    { method:"POST", body:form }
-  );
-
-  let data = await res.json();
-
-  await addDoc(collection(db,"images"),{
-    url:data.secure_url,
-    category:category,
-    time:Date.now()
-  });
-
-  loadImages();
-  alert("Uploaded!");
+  if(el.tagName==="IMG"){
+    modalImg.style.display="block";
+    modalVideo.style.display="none";
+    modalImg.src = el.src;
+  }else{
+    modalImg.style.display="none";
+    modalVideo.style.display="block";
+    modalVideo.src = el.src;
+    modalVideo.play();
+  }
 }
 
+function closeModal(){
+  modal.style.display="none";
+  modalVideo.pause();
+}
+
+function next(){
+  index = (index+1)%items.length;
+  openModal(items[index]);
+}
+
+function prev(){
+  index = (index-1+items.length)%items.length;
+  openModal(items[index]);
+}
+
+/* close on background click */
+modal.addEventListener("click",(e)=>{
+  if(e.target===modal) closeModal();
+});
 </script>
 
 </body>
